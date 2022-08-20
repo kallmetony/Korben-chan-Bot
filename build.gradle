@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+
+group 'org.aaronr92'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = "16"
+targetCompatibility = 16
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_16
+    targetCompatibility = JavaVersion.VERSION_16
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.aaronr92.Bot'
+    }
+}
+
+dependencies {
+    implementation 'net.dv8tion:JDA:5.0.0-alpha.17'
+
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+    implementation 'org.slf4j:slf4j-simple:1.7.36'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+}
+
+test {
+    useJUnitPlatform()
+}
