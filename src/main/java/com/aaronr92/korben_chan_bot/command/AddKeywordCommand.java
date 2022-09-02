@@ -9,13 +9,13 @@ import java.util.Objects;
 import java.util.Random;
 
 public class AddKeywordCommand extends ListenerAdapter {
-    String[] replies = {"Готово!", "Есть!", "Добавил я..", "Ну и что дальше?"};
+    String[] replies = {"Р“РѕС‚РѕРІРѕ!", "Р•СЃС‚СЊ!", "Р”РѕР±Р°РІРёР» СЏ..", "РќСѓ Рё С‡С‚Рѕ РґР°Р»СЊС€Рµ?"};
     Random r = new Random();
     @Override
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
-        if (event.getName().equals("добавить")) {
-            String word = Objects.requireNonNull(event.getOption("слово")).getAsString().toLowerCase();
-            String reply = Objects.requireNonNull(event.getOption("ответ")).getAsString();
+        if (event.getName().equals("РґРѕР±Р°РІРёС‚СЊ")) {
+            String word = Objects.requireNonNull(event.getOption("СЃР»РѕРІРѕ")).getAsString().toLowerCase();
+            String reply = Objects.requireNonNull(event.getOption("РѕС‚РІРµС‚")).getAsString();
             MessageListener.keywords.put(word, reply);
             event.reply(replies[r.nextInt(replies.length)]).queue();
         }

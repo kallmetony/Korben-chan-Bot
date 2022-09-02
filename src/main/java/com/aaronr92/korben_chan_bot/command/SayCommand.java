@@ -9,8 +9,8 @@ import java.util.Objects;
 public class SayCommand extends ListenerAdapter {
     @Override
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
-        if (event.getName().equals("высрать")) {
-            event.reply(Objects.requireNonNull(event.getOption("текст")).getAsString()).queue(); // reply immediately
+        if (event.getName().equals("РІС‹СЃСЂР°С‚СЊ")) {
+            event.reply(Objects.requireNonNull(event.getOption("С‚РµРєСЃС‚")).getAsString()).queue(); // reply immediately
         }
     }
 }

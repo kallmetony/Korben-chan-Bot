@@ -27,75 +27,75 @@ public class MessageListener extends ListenerAdapter {
         if (keywords.containsKey(encodeMessage(message).toLowerCase())) {
             event.getChannel().sendMessage(encodeMessage(keywords.get(message.toLowerCase()))).queue();
         }
-        if (encodeMessage(message).toLowerCase().startsWith("!добавить")) {
+        if (encodeMessage(message).toLowerCase().startsWith("!РґРѕР±Р°РІРёС‚СЊ")) {
             String[] args = message.split("-");
             keywords.put(encodeMessage(args[0].split(" ")[1].toLowerCase()), encodeMessage(args[1].toLowerCase()));
-            event.getChannel().sendMessage(encodeMessage("Ну добавил я, и чо?")).queue();
+            event.getChannel().sendMessage(encodeMessage("РќСѓ РґРѕР±Р°РІРёР» СЏ, Рё С‡Рѕ?")).queue();
             System.out.println(encodeMessage(keywords.toString()));
         }
-        if (encodeMessage(message).toLowerCase().contains("эх")) {
-            event.getChannel().sendMessage(encodeMessage("Черчилль 3, даа сука!")).queue();
+        if (encodeMessage(message).toLowerCase().contains("СЌС…")) {
+            event.getChannel().sendMessage(encodeMessage("Р§РµСЂС‡РёР»Р»СЊ 3, РґР°Р° СЃСѓРєР°!")).queue();
         }
-        if (encodeMessage(message).toLowerCase().equals("!хуй")) {
-            event.getChannel().sendMessage(encodeMessage("зато какой!")).queue();
+        if (encodeMessage(message).toLowerCase().equals("!С…СѓР№")) {
+            event.getChannel().sendMessage(encodeMessage("Р·Р°С‚Рѕ РєР°РєРѕР№!")).queue();
         }
-        if (encodeMessage(message).toLowerCase().contains("бот пидор")) {
-            event.getChannel().sendMessage(encodeMessage("Сам пидор!")).queue();
+        if (encodeMessage(message).toLowerCase().contains("Р±РѕС‚ РїРёРґРѕСЂ")) {
+            event.getChannel().sendMessage(encodeMessage("РЎР°Рј РїРёРґРѕСЂ!")).queue();
         }
-        if (encodeMessage(message).toLowerCase().contains("грядка") ||
-                encodeMessage(message).toLowerCase().contains("клумба") ||
-                encodeMessage(message).toLowerCase().contains("нир ю"))  {
-            event.getMessage().reply(encodeMessage("А кто это?")).queue();
+        if (encodeMessage(message).toLowerCase().contains("РіСЂСЏРґРєР°") ||
+                encodeMessage(message).toLowerCase().contains("РєР»СѓРјР±Р°") ||
+                encodeMessage(message).toLowerCase().contains("РЅРёСЂ СЋ"))  {
+            event.getMessage().reply(encodeMessage("Рђ РєС‚Рѕ СЌС‚Рѕ?")).queue();
         }
-        if (encodeMessage(message).toLowerCase().equals("!член")) {
-            event.getMessage().reply(random.nextInt(3, 45) + encodeMessage(" см!")).queue();
+        if (encodeMessage(message).toLowerCase().equals("!С‡Р»РµРЅ")) {
+            event.getMessage().reply(random.nextInt(3, 45) + encodeMessage(" СЃРј!")).queue();
         }
-        if (encodeMessage(message).toLowerCase().equals("!семья")) {
-            event.getChannel().sendMessage(encodeMessage("Это главное!")).queue();
+        if (encodeMessage(message).toLowerCase().equals("!СЃРµРјСЊСЏ")) {
+            event.getChannel().sendMessage(encodeMessage("Р­С‚Рѕ РіР»Р°РІРЅРѕРµ!")).queue();
         }
-        if (encodeMessage(message).toLowerCase().equals("!мать")) {
-            event.getMessage().reply(encodeMessage("не имба")).queue();
+        if (encodeMessage(message).toLowerCase().equals("!РјР°С‚СЊ")) {
+            event.getMessage().reply(encodeMessage("РЅРµ РёРјР±Р°")).queue();
         }
-        if (encodeMessage(message).toLowerCase().equals("!корбен")) {
+        if (encodeMessage(message).toLowerCase().equals("!РєРѕСЂР±РµРЅ")) {
             event.getChannel().sendMessage(Emote.KORBEN_AHUEL.getCode()).queue();
         }
-        if (encodeMessage(message).toLowerCase().startsWith("!черчилль")) {
-            event.getChannel().sendMessage(encodeMessage("Дикер макс вообще-то")).queue();
+        if (encodeMessage(message).toLowerCase().startsWith("!С‡РµСЂС‡РёР»Р»СЊ")) {
+            event.getChannel().sendMessage(encodeMessage("Р”РёРєРµСЂ РјР°РєСЃ РІРѕРѕР±С‰Рµ-С‚Рѕ")).queue();
         }
-        if (encodeMessage(message).toLowerCase().startsWith("!дикер")) {
-            event.getChannel().sendMessage(encodeMessage("А я думал черчилль")).queue();
+        if (encodeMessage(message).toLowerCase().startsWith("!РґРёРєРµСЂ")) {
+            event.getChannel().sendMessage(encodeMessage("Рђ СЏ РґСѓРјР°Р» С‡РµСЂС‡РёР»Р»СЊ")).queue();
         }
-        if (encodeMessage(message).toLowerCase().startsWith("!джов")) {
-            event.getChannel().sendMessage(Emote.JOVE.getCode() + encodeMessage(" Гав!")).queue();
+        if (encodeMessage(message).toLowerCase().startsWith("!РґР¶РѕРІ")) {
+            event.getChannel().sendMessage(Emote.JOVE.getCode() + encodeMessage(" Р“Р°РІ!")).queue();
         }
-        if (encodeMessage(message).toLowerCase().startsWith("!бар")) {
+        if (encodeMessage(message).toLowerCase().startsWith("!Р±Р°СЂ")) {
             event.getChannel().sendMessage(Emote.THE_BARBARIAN.getCode()).queue();
         }
-        if (encodeMessage(message).toLowerCase().equals("!ютуб")) {
+        if (encodeMessage(message).toLowerCase().equals("!СЋС‚СѓР±")) {
             event.getChannel().sendMessage(encodeMessage("https://www.youtube.com/c/KorbenDallasNoMercy")).queue();
         }
-        if (encodeMessage(message).toLowerCase().equals("!трово")) {
+        if (encodeMessage(message).toLowerCase().equals("!С‚СЂРѕРІРѕ")) {
             event.getChannel().sendMessage(encodeMessage("https://trovo.live/s/KorbenDallas")).queue();
         }
-        if (encodeMessage(message).toLowerCase().equals("!донат")) {
+        if (encodeMessage(message).toLowerCase().equals("!РґРѕРЅР°С‚")) {
             event.getMessage().reply(encodeMessage("https://www.donationalerts.com/r/korbendetka")).queue();
         }
-        if (encodeMessage(message).toLowerCase().contains("иди нахуй")) {
-            event.getMessage().reply(encodeMessage("Сам иди!")).queue();
+        if (encodeMessage(message).toLowerCase().contains("РёРґРё РЅР°С…СѓР№")) {
+            event.getMessage().reply(encodeMessage("РЎР°Рј РёРґРё!")).queue();
         }
-        if (encodeMessage(message).toLowerCase().startsWith("!удалить")) {
+        if (encodeMessage(message).toLowerCase().startsWith("!СѓРґР°Р»РёС‚СЊ")) {
 //            int count = 0;
 //            try {
 //                count = Integer.parseInt(encodeMessage(message).split(" ")[1]);
 //            } catch (NumberFormatException e) {
-//                event.getMessage().reply(encodeMessage("Дурак? Напиши цифрами количество смс!")).queue();
+//                event.getMessage().reply(encodeMessage("Р”СѓСЂР°Рє? РќР°РїРёС€Рё С†РёС„СЂР°РјРё РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРјСЃ!")).queue();
 //                return;
 //            }
 //            if (count > 99) {
-//                event.getMessage().reply(encodeMessage("Максимум - 100 сообщений")).queue();
+//                event.getMessage().reply(encodeMessage("РњР°РєСЃРёРјСѓРј - 100 СЃРѕРѕР±С‰РµРЅРёР№")).queue();
 //                return;
 //            } else if (count < 1) {
-//                event.getMessage().reply(encodeMessage("Минимум - 1 сообщение")).queue();
+//                event.getMessage().reply(encodeMessage("РњРёРЅРёРјСѓРј - 1 СЃРѕРѕР±С‰РµРЅРёРµ")).queue();
 //                return;
 //            }
 //            List<Message> history = event.getChannel().getHistoryBefore(event.getMessage(), count).complete().getRetrievedHistory();
@@ -105,8 +105,8 @@ public class MessageListener extends ListenerAdapter {
 //                System.out.println(m.toString());
 //                m.delete().reason("Cleared by command").queueAfter(2, TimeUnit.SECONDS);
 //            }
-//            event.getMessage().reply(encodeMessage("Все смс удалены!")).queue();
-            event.getMessage().reply(encodeMessage("Пока не работает!")).queue();
+//            event.getMessage().reply(encodeMessage("Р’СЃРµ СЃРјСЃ СѓРґР°Р»РµРЅС‹!")).queue();
+            event.getMessage().reply(encodeMessage("РџРѕРєР° РЅРµ СЂР°Р±РѕС‚Р°РµС‚!")).queue();
         }
     }
 

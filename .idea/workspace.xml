@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ac35ebd-f2af-4d9c-ada7-68e9c0a9ab40" name="Changes" comment="Added commands&#10;&#10;Now bot can say anything using /высрать, also /добавить adds new message-reply pair">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/Bot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/command/AddKeywordCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/command/AddKeywordCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/command/SayCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/command/SayCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/listener/MessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/listener/MessageListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +194,7 @@
       <workItem from="1660923071493" duration="11765000" />
       <workItem from="1660986169951" duration="2463000" />
       <workItem from="1661018208613" duration="201000" />
-      <workItem from="1662135441968" duration="6779000" />
+      <workItem from="1662135441968" duration="7034000" />
     </task>
     <task id="LOCAL-00001" summary="Created bot">
       <created>1661018368640</created>

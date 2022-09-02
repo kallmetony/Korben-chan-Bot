@@ -27,11 +27,11 @@ public class Bot {
                 .build();
 
         jda.updateCommands().addCommands(
-                Commands.slash("высрать", "Говорит что-то")
-                        .addOptions(new OptionData(OptionType.STRING, "текст", "Текст для того, чтобы сказать", true)),
-                Commands.slash("добавить", "Добавляет новый случай слово - ответ")
-                        .addOptions(new OptionData(OptionType.STRING, "слово", "Фраза, на которую бот ответит", true))
-                        .addOptions(new OptionData(OptionType.STRING, "ответ", "Фраза, которой бот ответит", true))
+                Commands.slash("РІС‹СЃСЂР°С‚СЊ", "Р“РѕРІРѕСЂРёС‚ С‡С‚Рѕ-С‚Рѕ")
+                        .addOptions(new OptionData(OptionType.STRING, "С‚РµРєСЃС‚", "РўРµРєСЃС‚ РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ СЃРєР°Р·Р°С‚СЊ", true)),
+                Commands.slash("РґРѕР±Р°РІРёС‚СЊ", "Р”РѕР±Р°РІР»СЏРµС‚ РЅРѕРІС‹Р№ СЃР»СѓС‡Р°Р№ СЃР»РѕРІРѕ - РѕС‚РІРµС‚")
+                        .addOptions(new OptionData(OptionType.STRING, "СЃР»РѕРІРѕ", "Р¤СЂР°Р·Р°, РЅР° РєРѕС‚РѕСЂСѓСЋ Р±РѕС‚ РѕС‚РІРµС‚РёС‚", true))
+                        .addOptions(new OptionData(OptionType.STRING, "РѕС‚РІРµС‚", "Р¤СЂР°Р·Р°, РєРѕС‚РѕСЂРѕР№ Р±РѕС‚ РѕС‚РІРµС‚РёС‚", true))
         ).queue();
     }
 }
