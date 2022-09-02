@@ -4,31 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ac35ebd-f2af-4d9c-ada7-68e9c0a9ab40" name="Changes" comment="Created bot">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/command/AddKeywordCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/command/SayCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+    <list default="true" id="0ac35ebd-f2af-4d9c-ada7-68e9c0a9ab40" name="Changes" comment="Added commands&#10;&#10;Now bot can say anything using /высрать, also /добавить adds new message-reply pair">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/Bot.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/listeners/MessageListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/listeners/PurgeCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/listeners/ReadyListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java.io.PrintStream@31b7dea0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben-chan-bot/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/Bot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben-chan-bot/Emote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/Emote.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben-chan-bot/listeners/MessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/listener/MessageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben-chan-bot/listeners/PurgeCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben-chan-bot/listeners/ReadyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/listener/ReadyListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,7 +189,7 @@
       <workItem from="1660923071493" duration="11765000" />
       <workItem from="1660986169951" duration="2463000" />
       <workItem from="1661018208613" duration="201000" />
-      <workItem from="1662135441968" duration="6301000" />
+      <workItem from="1662135441968" duration="6779000" />
     </task>
     <task id="LOCAL-00001" summary="Created bot">
       <created>1661018368640</created>
@@ -221,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661018368640</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added commands&#10;&#10;Now bot can say anything using /высрать, also /добавить adds new message-reply pair">
+      <created>1662145969070</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1662145969070</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,7 +224,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created bot" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created bot" />
+    <MESSAGE value="Added commands&#10;&#10;Now bot can say anything using /высрать, also /добавить adds new message-reply pair" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added commands&#10;&#10;Now bot can say anything using /высрать, also /добавить adds new message-reply pair" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
