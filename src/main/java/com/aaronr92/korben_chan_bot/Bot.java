@@ -1,9 +1,8 @@
 package com.aaronr92.korben_chan_bot;
 
-import com.aaronr92.korben_chan_bot.command.AddKeywordCommand;
-import com.aaronr92.korben_chan_bot.command.SayCommand;
+import com.aaronr92.korben_chan_bot.command.*;
+import com.aaronr92.korben_chan_bot.listener.FileReader;
 import com.aaronr92.korben_chan_bot.listener.MessageListener;
-import com.aaronr92.korben_chan_bot.listener.ReadyListener;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -16,22 +15,27 @@ import javax.security.auth.login.LoginException;
 
 public class Bot {
 
-    public static final String TOKEN = "OTE0NTg5NDI3NjAxMzk1NzMz.GhCCg-.YZyQWexUK3EkUhsnnmlKOLXfixQ1oJTrq2ng34";
+    public static final String path = String.format("%s\\OneDrive\\keywords.txt", System.getProperty("user.home"));
 
     public static void main(String[] args) throws LoginException {
+
+        final String TOKEN = args[0];
 
         JDA jda = JDABuilder.createLight(TOKEN, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                 .setBulkDeleteSplittingEnabled(false)
                 .setActivity(Activity.playing("World of Tanks"))
-                .addEventListeners(new ReadyListener(), new MessageListener(), new SayCommand(), new AddKeywordCommand())
+                .addEventListeners(new MessageListener(), new SayCommand(), new FlipCoinCommand(), new AddKeywordCommand(),
+                        new LengthCommand(), new FileReader())
                 .build();
 
         jda.updateCommands().addCommands(
-                Commands.slash("РІС‹СЃСЂР°С‚СЊ", "Р“РѕРІРѕСЂРёС‚ С‡С‚Рѕ-С‚Рѕ")
-                        .addOptions(new OptionData(OptionType.STRING, "С‚РµРєСЃС‚", "РўРµРєСЃС‚ РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ СЃРєР°Р·Р°С‚СЊ", true)),
-                Commands.slash("РґРѕР±Р°РІРёС‚СЊ", "Р”РѕР±Р°РІР»СЏРµС‚ РЅРѕРІС‹Р№ СЃР»СѓС‡Р°Р№ СЃР»РѕРІРѕ - РѕС‚РІРµС‚")
-                        .addOptions(new OptionData(OptionType.STRING, "СЃР»РѕРІРѕ", "Р¤СЂР°Р·Р°, РЅР° РєРѕС‚РѕСЂСѓСЋ Р±РѕС‚ РѕС‚РІРµС‚РёС‚", true))
-                        .addOptions(new OptionData(OptionType.STRING, "РѕС‚РІРµС‚", "Р¤СЂР°Р·Р°, РєРѕС‚РѕСЂРѕР№ Р±РѕС‚ РѕС‚РІРµС‚РёС‚", true))
+                Commands.slash("сказать", "Говорит что-то")
+                        .addOptions(new OptionData(OptionType.STRING, "текст", "Текст для того, чтобы сказать", true)),
+                Commands.slash("добавить", "Добавляет новый случай слово - ответ")
+                        .addOptions(new OptionData(OptionType.STRING, "слово", "Фраза, на которую бот ответит", true))
+                        .addOptions(new OptionData(OptionType.STRING, "ответ", "Фраза, которой бот ответит", true)),
+                Commands.slash("член", "Называет тебе длину"),
+                Commands.slash("подкинуть", "Выпадает T95e6 или Объект 907")
         ).queue();
     }
 }

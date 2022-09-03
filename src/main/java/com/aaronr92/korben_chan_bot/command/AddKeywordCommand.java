@@ -1,23 +1,41 @@
 package com.aaronr92.korben_chan_bot.command;
 
+import com.aaronr92.korben_chan_bot.Bot;
 import com.aaronr92.korben_chan_bot.listener.MessageListener;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
 public class AddKeywordCommand extends ListenerAdapter {
-    String[] replies = {"Р“РѕС‚РѕРІРѕ!", "Р•СЃС‚СЊ!", "Р”РѕР±Р°РІРёР» СЏ..", "РќСѓ Рё С‡С‚Рѕ РґР°Р»СЊС€Рµ?"};
+    String[] replies = {"Готово!", "Есть!", "Добавил я..", "Ну и что дальше?"};
     Random r = new Random();
+
     @Override
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
-        if (event.getName().equals("РґРѕР±Р°РІРёС‚СЊ")) {
-            String word = Objects.requireNonNull(event.getOption("СЃР»РѕРІРѕ")).getAsString().toLowerCase();
-            String reply = Objects.requireNonNull(event.getOption("РѕС‚РІРµС‚")).getAsString();
+        if (event.getName().equals("добавить")) {
+            String word = Objects.requireNonNull(event.getOption("слово")).getAsString().toLowerCase();
+            String reply = Objects.requireNonNull(event.getOption("ответ")).getAsString();
             MessageListener.keywords.put(word, reply);
+            save(word, reply);
             event.reply(replies[r.nextInt(replies.length)]).queue();
+        }
+    }
+
+    private void save(String word, String reply) {
+        File file = new File(Bot.path);
+
+        try {
+            FileWriter fw = new FileWriter(file, true);
+            fw.append(String.format("\n%s-%s", word, reply));
+            fw.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
