@@ -18,7 +18,9 @@ public class MessageListener extends ListenerAdapter {
         if (keywords.containsKey(encodeMessage(message).toLowerCase())) {
             event.getChannel().sendMessage(encodeMessage(keywords.get(message.toLowerCase()))).queue();
         }
-        if (encodeMessage(message).equals(encodeMessage(message).toUpperCase()) && message.length() > 4) {
+        if (encodeMessage(message).equals(encodeMessage(message).toUpperCase()) &&
+                message.length() > 4 &&
+                !encodeMessage(message).matches("^[0-9\\s]*$")) {
             event.getMessage().reply("Не капси уёбина").queue();
         }
         if (encodeMessage(message).toLowerCase().startsWith("!удалить")) {

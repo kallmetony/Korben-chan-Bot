@@ -4,43 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ac35ebd-f2af-4d9c-ada7-68e9c0a9ab40" name="Changes" comment="Added commands&#10;&#10;Now bot can say anything using /высрать, also /добавить adds new message-reply pair">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/command/FlipCoinCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/command/LengthCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/listener/FileReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+    <list default="true" id="0ac35ebd-f2af-4d9c-ada7-68e9c0a9ab40" name="Changes" comment="New commands added&#10;&#10;Added flip a coin game &quot;/подкинуть&quot;">
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/Emote.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/korben_chan_bot/Bot.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/korben_chan_bot/Bot.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/korben_chan_bot/command/AddKeywordCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/korben_chan_bot/command/AddKeywordCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/korben_chan_bot/command/SayCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/korben_chan_bot/command/SayCommand.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/korben_chan_bot/listener/MessageListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/korben_chan_bot/listener/MessageListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/korben_chan_bot/listener/ReadyListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/first-discord-bot-1.0.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/Bot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/Emote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/Emote.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/command/AddKeywordCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/command/AddKeywordCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/command/SayCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/command/SayCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/listener/MessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/listener/MessageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/listener/ReadyListener.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,17 +87,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/All Projects/Java/discord/first-discord-bot",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15546875",
-    "project.structure.side.proportion": "0.37407407",
-    "settings.editor.selected.configurable": "File.Encoding"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/All Projects/Java/discord/first-discord-bot&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15546875&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.37407407&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -137,7 +114,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Bot">
+  <component name="RunManager" selected="Gradle.first-discord-bot [shadowJar]">
     <configuration name="Bot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.aaronr92.korben_chan_bot.Bot" />
       <module name="korben-chan-bot.main" />
@@ -230,9 +207,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JAR Application.korben-chan-bot-1.0-all.jar" />
         <item itemvalue="Gradle.first-discord-bot [shadowJar]" />
         <item itemvalue="Gradle.first-discord-bot [clean]" />
+        <item itemvalue="JAR Application.korben-chan-bot-1.0-all.jar" />
         <item itemvalue="Gradle.first-discord-bot [jar]" />
         <item itemvalue="Application.Bot" />
       </list>
@@ -252,7 +229,9 @@
       <workItem from="1661018208613" duration="201000" />
       <workItem from="1662135441968" duration="8479000" />
       <workItem from="1662225932396" duration="1479000" />
-      <workItem from="1662227432487" duration="12947000" />
+      <workItem from="1662227432487" duration="13153000" />
+      <workItem from="1662240650760" duration="30000" />
+      <workItem from="1662240871325" duration="316000" />
     </task>
     <task id="LOCAL-00001" summary="Created bot">
       <created>1661018368640</created>
@@ -268,7 +247,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662145969070</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="New commands added&#10;&#10;Added flip a coin game &quot;/подкинуть&quot;">
+      <created>1662240578038</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1662240578039</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,7 +274,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created bot" />
     <MESSAGE value="Added commands&#10;&#10;Now bot can say anything using /высрать, also /добавить adds new message-reply pair" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added commands&#10;&#10;Now bot can say anything using /высрать, also /добавить adds new message-reply pair" />
+    <MESSAGE value="New commands added&#10;&#10;Added flip a coin game &quot;/подкинуть&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="New commands added&#10;&#10;Added flip a coin game &quot;/подкинуть&quot;" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
