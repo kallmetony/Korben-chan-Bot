@@ -21,6 +21,10 @@ public class HelpCommand extends ListenerAdapter {
             embedBuilder.addField("`/член`", "Называет случайную длину", true);
             embedBuilder.addField("`/открыть`", "Открывает коробку, из которой падают танки", true);
             embedBuilder.addBlankField(true);
+            embedBuilder.addBlankField(true);
+            embedBuilder.addField("`/post`",
+                    "Позволяет отправить ембед в любой канал, содержимое указывается в параметрах", true);
+            embedBuilder.addField("`/info`", "Информационное сообщение, отправляется в указанный канал", true);
             embedBuilder.setColor(Color.PINK);
             event.replyEmbeds(embedBuilder.build()).queue();
         }
