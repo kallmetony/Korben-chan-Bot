@@ -25,6 +25,7 @@ public class HelpCommand extends ListenerAdapter {
             embedBuilder.addField("`/открыть`",
                     "Открывает коробку, из которой падают танки", true);
             embedBuilder.addBlankField(true);
+            embedBuilder.addField("Команды администратора", "Только для администраторов", false);
             embedBuilder.addField("`/post`",
                     "Позволяет отправить ембед в любой канал, содержимое указывается в параметрах", true);
             embedBuilder.addField("`/info`",
