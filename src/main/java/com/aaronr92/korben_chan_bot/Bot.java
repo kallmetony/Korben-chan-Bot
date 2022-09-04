@@ -35,7 +35,7 @@ public class Bot {
                         .addOptions(new OptionData(OptionType.STRING, "слово", "Фраза, на которую бот ответит", true))
                         .addOptions(new OptionData(OptionType.STRING, "ответ", "Фраза, которой бот ответит", true)),
                 Commands.slash("член", "Называет тебе длину"),
-                Commands.slash("подкинуть", "Выпадает T95e6 или Объект 907")
+                Commands.slash("открыть", "Выпадают только лучшие танки!")
         ).queue();
     }
 }
