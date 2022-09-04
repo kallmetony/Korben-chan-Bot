@@ -4,20 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ac35ebd-f2af-4d9c-ada7-68e9c0a9ab40" name="Changes" comment="New commands added&#10;&#10;Added flip a coin game &quot;/подкинуть&quot;">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+    <list default="true" id="0ac35ebd-f2af-4d9c-ada7-68e9c0a9ab40" name="Changes" comment="Updated &quot;/подкинуть&quot; command&#10;&#10;Added more tanks">
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/korben_chan_bot/Bot.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/korben_chan_bot/Bot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/korben_chan_bot/command/AddKeywordCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/korben_chan_bot/command/AddKeywordCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/korben_chan_bot/listener/MessageListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/aaronr92/korben_chan_bot/listener/MessageListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/listener/MessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/listener/MessageListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/Bot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/command/FlipCoinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aaronr92/korben_chan_bot/command/FlipCoinCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +107,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.first-discord-bot [shadowJar]">
+  <component name="RunManager" selected="Application.Bot">
     <configuration name="Bot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.aaronr92.korben_chan_bot.Bot" />
       <module name="korben-chan-bot.main" />
@@ -231,7 +224,8 @@
       <workItem from="1662225932396" duration="1479000" />
       <workItem from="1662227432487" duration="13153000" />
       <workItem from="1662240650760" duration="30000" />
-      <workItem from="1662240871325" duration="316000" />
+      <workItem from="1662240871325" duration="506000" />
+      <workItem from="1662287978028" duration="2080000" />
     </task>
     <task id="LOCAL-00001" summary="Created bot">
       <created>1661018368640</created>
@@ -254,7 +248,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662240578039</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Warnings for CAPS messages&#10;&#10;Each person that will type CAPS message will receive a warning">
+      <created>1662241366074</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1662241366074</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,7 +276,9 @@
     <MESSAGE value="Created bot" />
     <MESSAGE value="Added commands&#10;&#10;Now bot can say anything using /высрать, also /добавить adds new message-reply pair" />
     <MESSAGE value="New commands added&#10;&#10;Added flip a coin game &quot;/подкинуть&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="New commands added&#10;&#10;Added flip a coin game &quot;/подкинуть&quot;" />
+    <MESSAGE value="Warnings for CAPS messages&#10;&#10;Each person that will type CAPS message will receive a warning" />
+    <MESSAGE value="Updated &quot;/подкинуть&quot; command&#10;&#10;Added more tanks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated &quot;/подкинуть&quot; command&#10;&#10;Added more tanks" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
