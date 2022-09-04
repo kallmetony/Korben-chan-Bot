@@ -15,16 +15,21 @@ public class HelpCommand extends ListenerAdapter {
             EmbedBuilder embedBuilder = new EmbedBuilder();
             embedBuilder.setTitle("Команды");
             embedBuilder.setDescription("Список всех команд бота");
-            embedBuilder.addField("`/сказать`", "Говорит то, что указано в параметре", true);
-            embedBuilder.addField("`/добавить`", "Добавляет новый вариант фраза-ответ", true);
+            embedBuilder.addField("`/сказать`",
+                    "Говорит то, что указано в параметре", true);
+            embedBuilder.addField("`/добавить`",
+                    "Добавляет новый вариант фраза-ответ", true);
             embedBuilder.addBlankField(true);
-            embedBuilder.addField("`/член`", "Называет случайную длину", true);
-            embedBuilder.addField("`/открыть`", "Открывает коробку, из которой падают танки", true);
-            embedBuilder.addBlankField(true);
+            embedBuilder.addField("`/член`",
+                    "Называет случайную длину", true);
+            embedBuilder.addField("`/открыть`",
+                    "Открывает коробку, из которой падают танки", true);
             embedBuilder.addBlankField(true);
             embedBuilder.addField("`/post`",
                     "Позволяет отправить ембед в любой канал, содержимое указывается в параметрах", true);
-            embedBuilder.addField("`/info`", "Информационное сообщение, отправляется в указанный канал", true);
+            embedBuilder.addField("`/info`",
+                    "Информационное сообщение, отправляется в указанный канал", true);
+            embedBuilder.addBlankField(true);
             embedBuilder.setColor(Color.PINK);
             event.replyEmbeds(embedBuilder.build()).queue();
         }
