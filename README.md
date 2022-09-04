@@ -1,4 +1,5 @@
 # Korben-chan bot
+![Korben-chan](korben.png)
 #### Based on JPA discord bot for KorbenDallas community
 #### The bot token must be provided in program arguments otherwise it won't work
 #### ``/info`` will provide information about the bot's commands
