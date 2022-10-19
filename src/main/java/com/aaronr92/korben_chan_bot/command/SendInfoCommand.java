@@ -14,13 +14,17 @@ public class SendInfoCommand extends ListenerAdapter {
         if (event.getName().equals("info")) {
             EmbedBuilder embedBuilder = new EmbedBuilder();
             embedBuilder.setTitle("Добро пожаловать!");
-            embedBuilder.setDescription("Если ты оказался здесь, значит ты либо классный пацан, либо так надо.");
-            embedBuilder.addField("Есть всего 4 правила", """
-                    1. Без расчленёнки, детского nsfw-контента, и всего подобного.
-                    2. Без срачей иначе 10 минут мута, живем мирно, ведь все вежливые же ^^
-                    3. Оффтопик не приветствуется
-                    4. Сообщения без капса""", true);
-            embedBuilder.setFooter("Веселись и развлекайся <3");
+            embedBuilder.setDescription("Незнание правил не освобождает от ответственности!");
+            embedBuilder.addField("Правила",
+                    """
+                    1. Без расчленёнки, детского nsfw-контента, и всего подобного
+                    2. Без любых срачей (см пункт 3). За такое выдается мут
+                    3. Оскорбления, в том числе завуалированные запрещены
+                    4. Запрещается провоцировать других участников сервера на срачи
+                    5. Рофлосрачи - в специальном канале
+                    6. За оффтопик можно получить мут
+                    7. Сообщения без капса""", true);
+            embedBuilder.setFooter("Веселись, удачи!");
             embedBuilder.setColor(Color.PINK);
             event.getOption("канал").getAsChannel().asTextChannel().sendMessageEmbeds(embedBuilder.build()).queue();
         }
