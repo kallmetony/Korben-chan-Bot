@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +29,16 @@ public class MessageListener extends ListenerAdapter {
                 !message.contains("@")) {
             event.getMessage().reply("Не капси уёбина").queue();
         }
-        log.info(message);
+
+        if (log.isDebugEnabled()) {
+            try {
+                log.debug("{} send: {}",
+                        new String(event.getAuthor().getName().getBytes(StandardCharsets.UTF_8), "windows-1251"),
+                        new String(message.getBytes(StandardCharsets.UTF_8), "windows-1251"));
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @Deprecated

@@ -25,7 +25,7 @@ public class SendEmbedCommand extends ListenerAdapter {
                 }
             }
             event.getOption("канал").getAsChannel().asTextChannel().sendMessageEmbeds(embedBuilder.build()).queue();
-            event.reply("Сделано!").queue();
+            event.reply("Сделано!").setEphemeral(true).queue();
         }
     }
 }

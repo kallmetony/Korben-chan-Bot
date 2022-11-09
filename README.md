@@ -4,9 +4,12 @@
 #### The bot token must be provided in program arguments otherwise it won't work
 #### ``/info`` will provide information about the bot's commands
 
+## Requirements
+Java 16 or higher
+
 ## Build
 1. Open terminal and navigate to project folder using ``cd <path>``
-2. Run gradle task ``gradle shadowJar``, .jar file will be placed in ``build/libs``
+2. Run gradle task ``./gradlew shadowJar``, .jar file will be placed in ``build/libs``
 
 ## Run
 1. Open terminal and navigate to .jar file using ``cd <path>``
