@@ -27,7 +27,8 @@ public class Bot {
                 .setBulkDeleteSplittingEnabled(false)
                 .setActivity(Activity.playing("World of Tanks"))
                 .addEventListeners(new MessageListener(), new SayCommand(), new FlipCoinCommand(), new AddKeywordCommand(),
-                        new LengthCommand(), new FileReader(), new HelpCommand(), new SendEmbedCommand(), new SendInfoCommand())
+                        new LengthCommand(), new FileReader(), new HelpCommand(), new SendEmbedCommand(), new SendInfoCommand(),
+                        new NewYearBoxesCommand())
                 .build();
 
         jda.updateCommands().addCommands(
@@ -41,6 +42,7 @@ public class Bot {
                                 "Фраза, которой бот ответит", true)),
                 Commands.slash("член", "Называет тебе длину"),
                 Commands.slash("открыть", "Коробка только с лучшими танками игры!"),
+                Commands.slash("новогодняя", "Открытие новогодних коробок!"),
                 Commands.slash("инфо", "Узнай больше о Korben-chan!"),
                 // Admin commands
                 Commands.slash("post", "Отправляет ембед в выбранный канал")
