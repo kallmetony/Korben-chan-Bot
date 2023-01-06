@@ -3,6 +3,7 @@ package com.aaronr92.korben_chan_bot;
 import com.aaronr92.korben_chan_bot.command.*;
 import com.aaronr92.korben_chan_bot.listener.FileReader;
 import com.aaronr92.korben_chan_bot.listener.MessageListener;
+import com.aaronr92.korben_chan_bot.repository.KeywordRepository;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.Permission;
@@ -19,12 +20,14 @@ public class Bot {
 
     public static void main(String[] args) {
 
+        KeywordRepository keywordRepository = new KeywordRepository();
+
         final String TOKEN = args[0];
 
         JDA jda = JDABuilder.createLight(TOKEN, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                 .setBulkDeleteSplittingEnabled(false)
                 .setActivity(Activity.playing("World of Tanks"))
-                .addEventListeners(new MessageListener(), new SayCommand(), new AddKeywordCommand(),
+                .addEventListeners(new MessageListener(), new SayCommand(), new AddKeywordCommand(keywordRepository),
                         new FileReader(), new HelpCommand(), new SendEmbedCommand(), new SendInfoCommand())
                 .build();
 

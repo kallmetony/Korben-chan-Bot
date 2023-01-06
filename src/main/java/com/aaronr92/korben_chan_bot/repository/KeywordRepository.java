@@ -1,19 +1,20 @@
 package com.aaronr92.korben_chan_bot.repository;
 
-import com.aaronr92.korben_chan_bot.entity.BotUser;
 import com.aaronr92.korben_chan_bot.entity.Keyword;
 import jakarta.persistence.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collection;
 import java.util.List;
 
 public class KeywordRepository {
 
-    private static Logger log = LoggerFactory.getLogger(KeywordRepository.class);
+    private static final Logger log = LoggerFactory.getLogger(KeywordRepository.class);
 
-    public static Keyword save(Keyword keyword) {
+    public Keyword save(Keyword keyword) {
+        if (contains(keyword.getWord()))
+            return null;
+
         try (EntityManagerFactory entityManagerFactory = RepositoryUtil.getEntityManagerFactory();
              EntityManager entityManager = entityManagerFactory.createEntityManager()) {
 
@@ -30,7 +31,7 @@ public class KeywordRepository {
         }
     }
 
-    public static List<Keyword> findAll() {
+    public List<Keyword> findAll() {
         try (EntityManagerFactory entityManagerFactory = RepositoryUtil.getEntityManagerFactory();
              EntityManager entityManager = entityManagerFactory.createEntityManager()) {
             Query query = entityManager.createQuery("select k from Keyword k");
@@ -39,7 +40,7 @@ public class KeywordRepository {
         }
     }
 
-    public static boolean contains(String word) {
+    public boolean contains(String word) {
         try (EntityManagerFactory entityManagerFactory = RepositoryUtil.getEntityManagerFactory();
              EntityManager entityManager = entityManagerFactory.createEntityManager()) {
             Query query = entityManager

@@ -23,9 +23,9 @@ public class MessageListener extends ListenerAdapter {
 
         String message = event.getMessage().getContentDisplay();
 
-//        if (keywords.containsKey(message.toLowerCase())) {
-//            event.getChannel().sendMessage(keywords.get(message.toLowerCase())).queue();
-//        }
+        if (keywords.containsKey(message.toLowerCase())) {
+            event.getChannel().sendMessage(keywords.get(message.toLowerCase())).queue();
+        }
 //
 //        if (message.equals(message.toUpperCase()) &&
 //                message.length() > 4 &&
