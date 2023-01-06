@@ -13,20 +13,19 @@ public class SendInfoCommand extends ListenerAdapter {
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
         if (event.getName().equals("info")) {
             EmbedBuilder embedBuilder = new EmbedBuilder();
-            embedBuilder.setTitle("Добро пожаловать!");
-            embedBuilder.setDescription("Незнание правил не освобождает от ответственности!");
-            embedBuilder.addField("Правила",
+            embedBuilder.setTitle("Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ!");
+            embedBuilder.setDescription("РќРµР·РЅР°РЅРёРµ РїСЂР°РІРёР» РЅРµ РѕСЃРІРѕР±РѕР¶РґР°РµС‚ РѕС‚ РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚Рё!");
+            embedBuilder.addField("РџСЂР°РІРёР»Р°",
                     """
-                    1. Без расчленёнки, детского nsfw-контента, и всего подобного
-                    2. Без любых срачей (см пункт 3). За такое выдается мут
-                    3. Оскорбления, в том числе завуалированные запрещены
-                    4. Запрещается провоцировать других участников сервера на срачи
-                    5. Рофлосрачи - в специальном канале
-                    6. За оффтопик можно получить мут
-                    7. Сообщения без капса""", true);
-            embedBuilder.setFooter("Веселись, удачи!");
+                    1. Р‘РµР· СЂР°СЃС‡Р»РµРЅС‘РЅРєРё, РґРµС‚СЃРєРѕРіРѕ nsfw-РєРѕРЅС‚РµРЅС‚Р°, Рё РІСЃРµРіРѕ РїРѕРґРѕР±РЅРѕРіРѕ
+                    2. Р‘РµР· Р»СЋР±С‹С… СЃСЂР°С‡РµР№ (СЃРј РїСѓРЅРєС‚ 3). Р—Р° С‚Р°РєРѕРµ РІС‹РґР°РµС‚СЃСЏ РјСѓС‚
+                    3. РћСЃРєРѕСЂР±Р»РµРЅРёСЏ, РІ С‚РѕРј С‡РёСЃР»Рµ Р·Р°РІСѓР°Р»РёСЂРѕРІР°РЅРЅС‹Рµ Р·Р°РїСЂРµС‰РµРЅС‹
+                    4. Р—Р°РїСЂРµС‰Р°РµС‚СЃСЏ РїСЂРѕРІРѕС†РёСЂРѕРІР°С‚СЊ РґСЂСѓРіРёС… СѓС‡Р°СЃС‚РЅРёРєРѕРІ СЃРµСЂРІРµСЂР° РЅР° СЃСЂР°С‡Рё
+                    5. Р—Р° РѕС„С„С‚РѕРїРёРє РјРѕР¶РЅРѕ РїРѕР»СѓС‡РёС‚СЊ РјСѓС‚
+                    6. РЎРѕРѕР±С‰РµРЅРёСЏ Р±РµР· РєР°РїСЃР°""", true);
+            embedBuilder.setFooter("Р’РµСЃРµР»РёСЃСЊ, СѓРґР°С‡Рё!");
             embedBuilder.setColor(Color.PINK);
-            event.getOption("канал").getAsChannel().asTextChannel().sendMessageEmbeds(embedBuilder.build()).queue();
+            event.getOption("РєР°РЅР°Р»").getAsChannel().asTextChannel().sendMessageEmbeds(embedBuilder.build()).queue();
         }
     }
 }

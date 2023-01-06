@@ -2,7 +2,7 @@ package com.aaronr92.korben_chan_bot.listener;
 
 
 import com.aaronr92.korben_chan_bot.Bot;
-import net.dv8tion.jda.api.events.ReadyEvent;
+import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;

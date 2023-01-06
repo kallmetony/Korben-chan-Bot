@@ -5,7 +5,6 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -19,16 +18,21 @@ public class MessageListener extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
+        if (event.getAuthor().isBot())
+            return;
+
         String message = event.getMessage().getContentDisplay();
-        if (keywords.containsKey(message.toLowerCase())) {
-            event.getChannel().sendMessage(keywords.get(message.toLowerCase())).queue();
-        }
-        if (message.equals(message.toUpperCase()) &&
-                message.length() > 4 &&
-                !message.matches("^[a-z0-9\\s\\-]*$") &&
-                !message.contains("@")) {
-            event.getMessage().reply("ÕÂ Í‡ÔÒË Û∏·ËÌ‡").queue();
-        }
+
+//        if (keywords.containsKey(message.toLowerCase())) {
+//            event.getChannel().sendMessage(keywords.get(message.toLowerCase())).queue();
+//        }
+//
+//        if (message.equals(message.toUpperCase()) &&
+//                message.length() > 4 &&
+//                !message.matches("^[a-z0-9\\s\\-]*$") &&
+//                !message.contains("@")) {
+//            event.getMessage().reply("–ù–µ –∫–∞–ø—Å–∏ —É–µ–±–∏–Ω–∞").queue();
+//        }
 
         if (log.isDebugEnabled()) {
             try {

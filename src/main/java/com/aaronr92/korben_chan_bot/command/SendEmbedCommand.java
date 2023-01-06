@@ -13,19 +13,19 @@ public class SendEmbedCommand extends ListenerAdapter {
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
         if (event.getName().equals("post")) {
             EmbedBuilder embedBuilder = new EmbedBuilder();
-            embedBuilder.setTitle(event.getOption("заголовок").getAsString());
-            embedBuilder.setDescription(event.getOption("сообщение").getAsString());
+            embedBuilder.setTitle(event.getOption("?????????").getAsString());
+            embedBuilder.setDescription(event.getOption("?????????").getAsString());
             embedBuilder.setColor(Color.BLACK);
-            if (event.getOption("цвет") != null) {
-                switch (event.getOption("цвет").getAsString()) {
+            if (event.getOption("????") != null) {
+                switch (event.getOption("????").getAsString()) {
                     case ("White") -> embedBuilder.setColor(Color.WHITE);
                     case ("Pink") -> embedBuilder.setColor(Color.PINK);
                     case ("Red") -> embedBuilder.setColor(Color.RED);
                     case ("Orange") -> embedBuilder.setColor(Color.ORANGE);
                 }
             }
-            event.getOption("канал").getAsChannel().asTextChannel().sendMessageEmbeds(embedBuilder.build()).queue();
-            event.reply("Сделано!").setEphemeral(true).queue();
+            event.getOption("?????").getAsChannel().asTextChannel().sendMessageEmbeds(embedBuilder.build()).queue();
+            event.reply("???????!").setEphemeral(true).queue();
         }
     }
 }

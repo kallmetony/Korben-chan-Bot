@@ -13,55 +13,51 @@ import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
-import javax.security.auth.login.LoginException;
-
 public class Bot {
 
     public static final String path = String.format("%s\\OneDrive\\keywords.txt", System.getProperty("user.home"));
 
-    public static void main(String[] args) throws LoginException {
+    public static void main(String[] args) {
 
         final String TOKEN = args[0];
 
         JDA jda = JDABuilder.createLight(TOKEN, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                 .setBulkDeleteSplittingEnabled(false)
                 .setActivity(Activity.playing("World of Tanks"))
-                .addEventListeners(new MessageListener(), new SayCommand(), new FlipCoinCommand(), new AddKeywordCommand(),
-                        new LengthCommand(), new FileReader(), new HelpCommand(), new SendEmbedCommand(), new SendInfoCommand(),
-                        new NewYearBoxesCommand())
+                .addEventListeners(new MessageListener(), new SayCommand(), new AddKeywordCommand(),
+                        new FileReader(), new HelpCommand(), new SendEmbedCommand(), new SendInfoCommand())
                 .build();
 
         jda.updateCommands().addCommands(
-                Commands.slash("сказать", "Говорит что-то")
-                        .addOptions(new OptionData(OptionType.STRING, "текст",
-                                "Текст для того, чтобы сказать", true)),
-                Commands.slash("добавить", "Добавляет новый случай слово - ответ")
-                        .addOptions(new OptionData(OptionType.STRING, "слово",
-                                "Фраза, на которую бот ответит", true))
-                        .addOptions(new OptionData(OptionType.STRING, "ответ",
-                                "Фраза, которой бот ответит", true)),
-                Commands.slash("член", "Называет тебе длину"),
-                Commands.slash("открыть", "Коробка только с лучшими танками игры!"),
-                Commands.slash("новогодняя", "Открытие новогодних коробок!"),
-                Commands.slash("инфо", "Узнай больше о Korben-chan!"),
+                Commands.slash("СЃРєР°Р·Р°С‚СЊ", "Р“РѕРІРѕСЂРёС‚ С‡С‚Рѕ-С‚Рѕ")
+                        .addOptions(new OptionData(OptionType.STRING, "С‚РµРєСЃС‚",
+                                "РўРµРєСЃС‚ РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ СЃРєР°Р·Р°С‚СЊ", true)),
+                Commands.slash("РґРѕР±Р°РІРёС‚СЊ", "Р”РѕР±Р°РІР»СЏРµС‚ РЅРѕРІС‹Р№ СЃР»СѓС‡Р°Р№ СЃР»РѕРІРѕ - РѕС‚РІРµС‚")
+                        .addOptions(new OptionData(OptionType.STRING, "СЃР»РѕРІРѕ",
+                                "Р¤СЂР°Р·Р°, РЅР° РєРѕС‚РѕСЂСѓСЋ Р±РѕС‚ РѕС‚РІРµС‚РёС‚", true))
+                        .addOptions(new OptionData(OptionType.STRING, "РѕС‚РІРµС‚",
+                                "Р¤СЂР°Р·Р°, РєРѕС‚РѕСЂРѕР№ Р±РѕС‚ РѕС‚РІРµС‚РёС‚", true)),
+                Commands.slash("РѕС‚РєСЂС‹С‚СЊ", "РљРѕСЂРѕР±РєР° С‚РѕР»СЊРєРѕ СЃ Р»СѓС‡С€РёРјРё С‚Р°РЅРєР°РјРё РёРіСЂС‹!"),
+                Commands.slash("РЅРѕРІРѕРіРѕРґРЅСЏСЏ", "РћС‚РєСЂС‹С‚РёРµ РЅРѕРІРѕРіРѕРґРЅРёС… РєРѕСЂРѕР±РѕРє!"),
+                Commands.slash("РёРЅС„Рѕ", "РЈР·РЅР°Р№ Р±РѕР»СЊС€Рµ Рѕ Korben-chan!"),
                 // Admin commands
-                Commands.slash("post", "Отправляет ембед в выбранный канал")
-                        .addOptions(new OptionData(OptionType.CHANNEL, "канал",
-                                "Канал, в который будет оптравлено сообщение", true))
-                        .addOptions(new OptionData(OptionType.STRING, "заголовок",
-                                "Заголовок сообщения", true))
-                        .addOptions(new OptionData(OptionType.STRING, "сообщение",
-                                "Сообщение, которое будет отправлено", true))
-                        .addOptions(new OptionData(OptionType.STRING, "цвет",
-                                "Цвет ембеда")
-                                .addChoice("Белый", "White")
-                                .addChoice("Розовый", "Pink")
-                                .addChoice("Красный", "Red")
-                                .addChoice("Оранжевый", "Orange"))
+                Commands.slash("post", "РћС‚РїСЂР°РІР»СЏРµС‚ РµРјР±РµРґ РІ РІС‹Р±СЂР°РЅРЅС‹Р№ РєР°РЅР°Р»")
+                        .addOptions(new OptionData(OptionType.CHANNEL, "РєР°РЅР°Р»",
+                                "РљР°РЅР°Р», РІ РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµС‚ РѕРїС‚СЂР°РІР»РµРЅРѕ СЃРѕРѕР±С‰РµРЅРёРµ", true))
+                        .addOptions(new OptionData(OptionType.STRING, "Р·Р°РіРѕР»РѕРІРѕРє",
+                                "Р—Р°РіРѕР»РѕРІРѕРє СЃРѕРѕР±С‰РµРЅРёСЏ", true))
+                        .addOptions(new OptionData(OptionType.STRING, "СЃРѕРѕР±С‰РµРЅРёРµ",
+                                "РЎРѕРѕР±С‰РµРЅРёРµ, РєРѕС‚РѕСЂРѕРµ Р±СѓРґРµС‚ РѕС‚РїСЂР°РІР»РµРЅРѕ", true))
+                        .addOptions(new OptionData(OptionType.STRING, "С†РІРµС‚",
+                                "Р¦РІРµС‚ РµРјР±РµРґР°")
+                                .addChoice("Р‘РµР»С‹Р№", "White")
+                                .addChoice("Р РѕР·РѕРІС‹Р№", "Pink")
+                                .addChoice("РљСЂР°СЃРЅС‹Р№", "Red")
+                                .addChoice("РћСЂР°РЅР¶РµРІС‹Р№", "Orange"))
                         .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR)),
-                Commands.slash("info", "Отправляет сообщение в информационный канал")
-                        .addOptions(new OptionData(OptionType.CHANNEL, "канал",
-                                "Канал, в который будет отправлено сообщение", true))
+                Commands.slash("info", "РћС‚РїСЂР°РІР»СЏРµС‚ СЃРѕРѕР±С‰РµРЅРёРµ РІ РёРЅС„РѕСЂРјР°С†РёРѕРЅРЅС‹Р№ РєР°РЅР°Р»")
+                        .addOptions(new OptionData(OptionType.CHANNEL, "РєР°РЅР°Р»",
+                                "РљР°РЅР°Р», РІ РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµС‚ РѕС‚РїСЂР°РІР»РµРЅРѕ СЃРѕРѕР±С‰РµРЅРёРµ", true))
                         .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))
         ).queue();
     }
