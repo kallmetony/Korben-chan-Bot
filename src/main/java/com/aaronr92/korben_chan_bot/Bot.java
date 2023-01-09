@@ -3,32 +3,35 @@ package com.aaronr92.korben_chan_bot;
 import com.aaronr92.korben_chan_bot.command.*;
 import com.aaronr92.korben_chan_bot.listener.FileReader;
 import com.aaronr92.korben_chan_bot.listener.MessageListener;
-import com.aaronr92.korben_chan_bot.repository.KeywordRepository;
+import com.aaronr92.korben_chan_bot.service.UserService;
+import com.aaronr92.korben_chan_bot.util.BotHttpClient;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.requests.RestAction;
 
 public class Bot {
 
-    public static final String path = String.format("%s\\OneDrive\\keywords.txt", System.getProperty("user.home"));
+    public static JDA jda;
 
     public static void main(String[] args) {
-
-        KeywordRepository keywordRepository = new KeywordRepository();
-
         final String TOKEN = args[0];
 
-        JDA jda = JDABuilder.createLight(TOKEN, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
+        UserService userService = new UserService();
+
+        jda = JDABuilder.createLight(TOKEN, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                 .setBulkDeleteSplittingEnabled(false)
-                .setActivity(Activity.playing("World of Tanks"))
-                .addEventListeners(new MessageListener(), new SayCommand(), new AddKeywordCommand(keywordRepository),
-                        new FileReader(), new HelpCommand(), new SendEmbedCommand(), new SendInfoCommand())
+                .setActivity(Activity.playing("Мир Танков"))
+                .addEventListeners(new MessageListener(), new SayCommand(), new AddKeywordCommand(),
+                        new FileReader(), new HelpCommand(), new SendEmbedCommand(), new SendInfoCommand(),
+                        new OpenBoxCommand(userService))
                 .build();
 
         jda.updateCommands().addCommands(
@@ -40,8 +43,7 @@ public class Bot {
                                 "Фраза, на которую бот ответит", true))
                         .addOptions(new OptionData(OptionType.STRING, "ответ",
                                 "Фраза, которой бот ответит", true)),
-                Commands.slash("открыть", "Коробка только с лучшими танками игры!"),
-                Commands.slash("новогодняя", "Открытие новогодних коробок!"),
+                Commands.slash("открыть", "Открыть ежедневную коробку!"),
                 Commands.slash("инфо", "Узнай больше о Korben-chan!"),
                 // Admin commands
                 Commands.slash("post", "Отправляет ембед в выбранный канал")
@@ -52,7 +54,7 @@ public class Bot {
                         .addOptions(new OptionData(OptionType.STRING, "сообщение",
                                 "Сообщение, которое будет отправлено", true))
                         .addOptions(new OptionData(OptionType.STRING, "цвет",
-                                "Цвет ембеда")
+                                "Цвет эмбеда")
                                 .addChoice("Белый", "White")
                                 .addChoice("Розовый", "Pink")
                                 .addChoice("Красный", "Red")
@@ -63,5 +65,14 @@ public class Bot {
                                 "Канал, в который будет отправлено сообщение", true))
                         .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))
         ).queue();
+    }
+
+    public static String retrieveUsernameById(long userId) {
+        String username;
+        RestAction<User> userAction = jda.retrieveUserById(userId);
+        username = userAction.complete().getName();
+        userAction.queue();
+
+        return username;
     }
 }

@@ -1,4 +1,4 @@
-package com.aaronr92.korben_chan_bot;
+package com.aaronr92.korben_chan_bot.util;
 
 public enum Emote {
 
