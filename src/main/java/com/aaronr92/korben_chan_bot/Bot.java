@@ -3,6 +3,7 @@ package com.aaronr92.korben_chan_bot;
 import com.aaronr92.korben_chan_bot.command.*;
 import com.aaronr92.korben_chan_bot.listener.FileReader;
 import com.aaronr92.korben_chan_bot.listener.MessageListener;
+import com.aaronr92.korben_chan_bot.service.CommandService;
 import com.aaronr92.korben_chan_bot.service.UserService;
 import com.aaronr92.korben_chan_bot.util.BotHttpClient;
 import net.dv8tion.jda.api.JDA;
@@ -25,13 +26,14 @@ public class Bot {
         final String TOKEN = args[0];
 
         UserService userService = new UserService();
+        CommandService commandService = new CommandService(userService);
 
         jda = JDABuilder.createLight(TOKEN, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                 .setBulkDeleteSplittingEnabled(false)
                 .setActivity(Activity.playing("Мир Танков"))
                 .addEventListeners(new MessageListener(), new SayCommand(), new AddKeywordCommand(),
                         new FileReader(), new HelpCommand(), new SendEmbedCommand(), new SendInfoCommand(),
-                        new OpenBoxCommand(userService))
+                        new OpenBoxCommand(commandService), new InfoCommand(commandService))
                 .build();
 
         jda.updateCommands().addCommands(
@@ -44,7 +46,7 @@ public class Bot {
                         .addOptions(new OptionData(OptionType.STRING, "ответ",
                                 "Фраза, которой бот ответит", true)),
                 Commands.slash("открыть", "Открыть ежедневную коробку!"),
-                Commands.slash("инфо", "Узнай больше о Korben-chan!"),
+                Commands.slash("инфо", "Информация о тебе"),
                 // Admin commands
                 Commands.slash("post", "Отправляет ембед в выбранный канал")
                         .addOptions(new OptionData(OptionType.CHANNEL, "канал",

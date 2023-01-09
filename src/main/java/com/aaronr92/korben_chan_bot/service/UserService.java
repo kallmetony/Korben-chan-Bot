@@ -2,10 +2,14 @@ package com.aaronr92.korben_chan_bot.service;
 
 import com.aaronr92.korben_chan_bot.util.BotHttpClient;
 import com.aaronr92.korben_chan_bot.util.EmbedFactory;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 public class UserService {
 
@@ -13,31 +17,48 @@ public class UserService {
 
     public UserService() { }
 
-    public void openBox(SlashCommandInteractionEvent event) {
+    public MessageEmbed openBox(long id) {
         try {
             JsonObject json = BotHttpClient
-                    .openBox(event.getMember().getIdLong());
+                    .openBox(id);
 
             String reward = json.get("reward").getAsString();
 
             if (reward.startsWith(" ")) {
-                event.replyEmbeds(embedFactory
-                                .getEmbed(EmbedFactory.Type.TANK, reward))
-                        .setEphemeral(false)
-                        .queue();
-                return;
+                return embedFactory
+                        .getEmbed(EmbedFactory.Type.TANK, reward);
             }
-            event.replyEmbeds(embedFactory
-                            .getEmbed(EmbedFactory.Type.MONEY, reward))
-                    .setEphemeral(false)
-                    .queue();
+            return embedFactory
+                    .getEmbed(EmbedFactory.Type.MONEY, reward);
         } catch (IOException | InterruptedException ignored) {
 
         } catch (IllegalArgumentException e) {
-            event.replyEmbeds(embedFactory
-                            .getEmbed(EmbedFactory.Type.BOX_ERROR, null))
-                    .setEphemeral(false)
-                    .queue();
+            return embedFactory
+                    .getEmbed(EmbedFactory.Type.BOX_ERROR, null);
         }
+        return null;
+    }
+
+    public MessageEmbed getUserInfo(long id) {
+        try {
+            JsonObject json = BotHttpClient.getUser(id);
+
+            Set<JsonObject> tanks = new HashSet<>();
+            json.get("tanks").getAsJsonArray().forEach(jsonElement ->
+                    tanks.add((JsonObject) jsonElement));
+
+            return embedFactory.getUserInfoEmbed(
+                    id,
+                    json.get("money").getAsInt(),
+                    tanks,
+                    json.get("maxHangarSize").getAsInt()
+            );
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalArgumentException e) {
+            // TODO: send not found embed
+            System.out.println("Not found!");
+        }
+        return null;
     }
 }
