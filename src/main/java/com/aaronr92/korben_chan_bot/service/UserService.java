@@ -2,12 +2,10 @@ package com.aaronr92.korben_chan_bot.service;
 
 import com.aaronr92.korben_chan_bot.util.BotHttpClient;
 import com.aaronr92.korben_chan_bot.util.EmbedFactory;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -56,9 +54,8 @@ public class UserService {
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         } catch (IllegalArgumentException e) {
-            // TODO: send not found embed
-            System.out.println("Not found!");
+            return embedFactory.getEmbed(
+                    EmbedFactory.Type.BOX_ERROR, null);
         }
-        return null;
     }
 }

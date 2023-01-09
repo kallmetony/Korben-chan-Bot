@@ -12,6 +12,7 @@ import java.util.Set;
 public class EmbedFactory {
 
     private final String BOX = "\uD83C\uDF81 Коробка \uD83C\uDF81";
+    private final String BOT = "Korben-chan";
 
     public MessageEmbed getEmbed(Type type, @Nullable String text) {
         switch (type) {
@@ -39,6 +40,16 @@ public class EmbedFactory {
                 builder.addField(
                         BOX,
                         "❌ Следующую коробку можно открыть только завтра ❌",
+                        false
+                );
+                builder.setColor(Color.RED);
+                return builder.build();
+            }
+            case USER_NOT_FOUND -> {
+                EmbedBuilder builder = new EmbedBuilder();
+                builder.addField(
+                        BOT,
+                        "Пользователь не найден. Открой хотябы одну коробку",
                         false
                 );
                 builder.setColor(Color.RED);
@@ -74,6 +85,7 @@ public class EmbedFactory {
     public enum Type {
         MONEY,
         TANK,
-        BOX_ERROR
+        BOX_ERROR,
+        USER_NOT_FOUND
     }
 }
