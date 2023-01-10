@@ -7,20 +7,23 @@ import net.dv8tion.jda.api.entities.MessageEmbed;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
-import java.util.Set;
+import java.util.Collection;
 
 public class EmbedFactory {
 
     private final String BOX = "\uD83C\uDF81 Коробка \uD83C\uDF81";
     private final String BOT = "Korben-chan";
+    private final String EXPEDITION = "\uD83D\uDEA9 Вылазка \uD83D\uDEA9";
+    private final String CLOCK = "⏰ Оставшееся время ⏰";
+    private final String IN_EXPEDITION = "В вылазке";
 
-    public MessageEmbed getEmbed(Type type, @Nullable String text) {
+    public MessageEmbed getEmbed(Type type, @Nullable String... args) {
         switch (type) {
             case MONEY -> {
                 EmbedBuilder builder = new EmbedBuilder();
                 builder.addField(
                         BOX,
-                        "Тебе выпало " + text + " \uD83E\uDE99 монет!",
+                        "Тебе выпало " + args[0] + " \uD83E\uDE99 монет!",
                         false);
                 builder.setColor(Color.YELLOW);
                 return builder.build();
@@ -29,7 +32,7 @@ public class EmbedFactory {
                 EmbedBuilder builder = new EmbedBuilder();
                 builder.addField(
                         BOX,
-                        "Тебе выпал танк ⭐" + text + " ⭐",
+                        "Тебе выпал танк ⭐" + args[0] + " ⭐",
                         false
                 );
                 builder.setColor(Color.MAGENTA);
@@ -59,7 +62,28 @@ public class EmbedFactory {
                 EmbedBuilder builder = new EmbedBuilder();
                 builder.addField(
                         "\uD83D\uDC95 Совместимость \uD83D\uDC95",
-                        "Вы совместимы на " + text + "%",
+                        args[1] + " и " + args[2] + " совместимы на " + args[0] + "%",
+                        false
+                );
+                builder.setColor(Color.PINK);
+                return builder.build();
+            }
+            case SUCCESSFUL_EXPEDITION_CREATION -> {
+                EmbedBuilder builder = new EmbedBuilder();
+                builder.addField(
+                        EXPEDITION,
+                        "✅ Успешное начало экспедиции! ✅",
+                        false
+                );
+                builder.setColor(Color.GREEN);
+                return builder.build();
+            }
+            case EXPEDITION_CREATION -> {
+                EmbedBuilder builder = new EmbedBuilder();
+                builder.setTitle(EXPEDITION);
+                builder.addField(
+                        "Выбор танка",
+                        "Выбери один танк",
                         false
                 );
                 builder.setColor(Color.PINK);
@@ -70,7 +94,7 @@ public class EmbedFactory {
     }
 
     public MessageEmbed getUserInfoEmbed(
-            long id, int money, Set<JsonObject> tanks, int hangarSize) {
+            long id, int money, Collection<JsonObject> tanks, int hangarSize) {
         EmbedBuilder builder = new EmbedBuilder();
         builder.setTitle(Bot.retrieveUsernameById(id));
         builder.addField("Баланс", money + " \uD83E\uDE99", false);
@@ -92,11 +116,34 @@ public class EmbedFactory {
         return builder.build();
     }
 
+    public MessageEmbed getExpeditionEmbed(
+            String remainingTime,
+            JsonObject tank
+    ) {
+        EmbedBuilder builder = new EmbedBuilder();
+        builder.setTitle(EXPEDITION);
+        builder.addField(
+                CLOCK,
+                remainingTime,
+                false
+        );
+        builder.addField(
+                IN_EXPEDITION,
+                tank.get("name").getAsString(),
+                false
+        );
+        builder.setColor(Color.PINK);
+        return builder.build();
+    }
+
     public enum Type {
         MONEY,
         TANK,
         BOX_ERROR,
         USER_NOT_FOUND,
-        SHIP
+        SHIP,
+        SUCCESSFUL_EXPEDITION_CREATION,
+        ALREADY_IN_EXPEDITION,
+        EXPEDITION_CREATION
     }
 }

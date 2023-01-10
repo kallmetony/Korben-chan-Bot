@@ -1,5 +1,8 @@
 package com.aaronr92.korben_chan_bot.util;
 
+import com.aaronr92.korben_chan_bot.exception.AlreadyInExpeditionException;
+import com.aaronr92.korben_chan_bot.exception.ExpeditionNotFoundException;
+import com.aaronr92.korben_chan_bot.exception.UserNotFoundException;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -10,12 +13,12 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class BotHttpClient {
-    private static final HttpClient http = HttpClient.newHttpClient();
+    private static final HttpClient client = HttpClient.newHttpClient();
     private static final String serverPath =
             "http://localhost:9099/api/v1/";
-
     private static final String boxPath = "box/";
     private static final String userPath = "user/";
+    private static final String expeditionPath = "expedition/";
 
     public static JsonObject openBox(long id)
             throws IOException, InterruptedException,
@@ -25,7 +28,7 @@ public class BotHttpClient {
                 .GET()
                 .build();
 
-        HttpResponse<String> response = http.send(
+        HttpResponse<String> response = client.send(
                 request,
                 HttpResponse.BodyHandlers.ofString()
         );
@@ -37,19 +40,60 @@ public class BotHttpClient {
     }
 
     public static JsonObject getUser(long id)
-            throws IOException, InterruptedException, IllegalArgumentException {
+            throws IOException, InterruptedException,
+            UserNotFoundException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(serverPath + userPath + id))
                 .GET()
                 .build();
 
-        HttpResponse<String> response = http.send(
+        HttpResponse<String> response = client.send(
                 request,
                 HttpResponse.BodyHandlers.ofString()
         );
 
         if (response.statusCode() == 404)
-            throw new IllegalArgumentException("This user does not exist");
+            throw new UserNotFoundException();
+
+        return new Gson().fromJson(response.body(), JsonObject.class);
+    }
+
+    public static Integer createExpedition(long userId, String tankName)
+            throws IOException, InterruptedException,
+            UserNotFoundException, AlreadyInExpeditionException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverPath + "expedition" + "?userId=" + userId + "&tankName=" + tankName))
+                .POST(HttpRequest.BodyPublishers.noBody())
+                .build();
+
+        HttpResponse<String> response = client.send(
+                request,
+                HttpResponse.BodyHandlers.ofString()
+        );
+
+        if (response.statusCode() == 404)
+            throw new UserNotFoundException();
+
+        if (response.statusCode() == 409)
+            throw new AlreadyInExpeditionException();
+
+        return response.statusCode();
+    }
+
+    public static JsonObject getExpedition(long userId)
+            throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverPath + expeditionPath + "user/" + userId))
+                .GET()
+                .build();
+
+        HttpResponse<String> response = client.send(
+                request,
+                HttpResponse.BodyHandlers.ofString()
+        );
+
+        if (response.statusCode() == 404)
+            throw new ExpeditionNotFoundException();
 
         return new Gson().fromJson(response.body(), JsonObject.class);
     }

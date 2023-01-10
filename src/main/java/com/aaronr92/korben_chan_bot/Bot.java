@@ -35,7 +35,7 @@ public class Bot {
                 .addEventListeners(new MessageListener(), new SayCommand(), new AddKeywordCommand(),
                         new FileReader(), new HelpCommand(), new SendEmbedCommand(), new SendInfoCommand(),
                         new OpenBoxCommand(commandService), new InfoCommand(commandService),
-                        new ShipCommand(commandService))
+                        new ShipCommand(commandService), new ExpeditionCommand(commandService))
                 .build();
 
         jda.updateCommands().addCommands(
@@ -54,6 +54,7 @@ public class Bot {
                                 "Первый пользователь"))
                         .addOptions(new OptionData(OptionType.USER, "пользователь_2",
                                 "Второй пользователь")),
+                Commands.slash("вылазка", "Начать вылазку или посмотреть её статус"),
                 // Admin commands
                 Commands.slash("post", "Отправляет ембед в выбранный канал")
                         .addOptions(new OptionData(OptionType.CHANNEL, "канал",
