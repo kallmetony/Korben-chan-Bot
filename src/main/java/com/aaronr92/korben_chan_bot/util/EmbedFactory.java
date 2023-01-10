@@ -55,6 +55,16 @@ public class EmbedFactory {
                 builder.setColor(Color.RED);
                 return builder.build();
             }
+            case SHIP -> {
+                EmbedBuilder builder = new EmbedBuilder();
+                builder.addField(
+                        "\uD83D\uDC95 Совместимость \uD83D\uDC95",
+                        "Вы совместимы на " + text + "%",
+                        false
+                );
+                builder.setColor(Color.PINK);
+                return builder.build();
+            }
         }
         return null;
     }
@@ -86,6 +96,7 @@ public class EmbedFactory {
         MONEY,
         TANK,
         BOX_ERROR,
-        USER_NOT_FOUND
+        USER_NOT_FOUND,
+        SHIP
     }
 }

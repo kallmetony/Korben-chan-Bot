@@ -11,9 +11,11 @@ import java.util.Set;
 
 public class UserService {
 
-    private final EmbedFactory embedFactory = new EmbedFactory();
+    private final EmbedFactory embedFactory;
 
-    public UserService() { }
+    public UserService(EmbedFactory embedFactory) {
+        this.embedFactory = embedFactory;
+    }
 
     public MessageEmbed openBox(long id) {
         try {

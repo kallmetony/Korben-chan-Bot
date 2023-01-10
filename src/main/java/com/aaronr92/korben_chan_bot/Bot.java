@@ -5,7 +5,7 @@ import com.aaronr92.korben_chan_bot.listener.FileReader;
 import com.aaronr92.korben_chan_bot.listener.MessageListener;
 import com.aaronr92.korben_chan_bot.service.CommandService;
 import com.aaronr92.korben_chan_bot.service.UserService;
-import com.aaronr92.korben_chan_bot.util.BotHttpClient;
+import com.aaronr92.korben_chan_bot.util.EmbedFactory;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.Permission;
@@ -25,15 +25,17 @@ public class Bot {
     public static void main(String[] args) {
         final String TOKEN = args[0];
 
-        UserService userService = new UserService();
-        CommandService commandService = new CommandService(userService);
+        EmbedFactory embedFactory = new EmbedFactory();
+        UserService userService = new UserService(embedFactory);
+        CommandService commandService = new CommandService(userService, embedFactory);
 
         jda = JDABuilder.createLight(TOKEN, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                 .setBulkDeleteSplittingEnabled(false)
                 .setActivity(Activity.playing("Мир Танков"))
                 .addEventListeners(new MessageListener(), new SayCommand(), new AddKeywordCommand(),
                         new FileReader(), new HelpCommand(), new SendEmbedCommand(), new SendInfoCommand(),
-                        new OpenBoxCommand(commandService), new InfoCommand(commandService))
+                        new OpenBoxCommand(commandService), new InfoCommand(commandService),
+                        new ShipCommand(commandService))
                 .build();
 
         jda.updateCommands().addCommands(
@@ -47,6 +49,11 @@ public class Bot {
                                 "Фраза, которой бот ответит", true)),
                 Commands.slash("открыть", "Открыть ежедневную коробку!"),
                 Commands.slash("инфо", "Информация о тебе"),
+                Commands.slash("ship", "Совместимость между двумя пользователями")
+                        .addOptions(new OptionData(OptionType.USER, "пользователь_1",
+                                "Первый пользователь"))
+                        .addOptions(new OptionData(OptionType.USER, "пользователь_2",
+                                "Второй пользователь")),
                 // Admin commands
                 Commands.slash("post", "Отправляет ембед в выбранный канал")
                         .addOptions(new OptionData(OptionType.CHANNEL, "канал",
