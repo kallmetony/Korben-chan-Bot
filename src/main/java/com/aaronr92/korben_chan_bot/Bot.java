@@ -3,6 +3,7 @@ package com.aaronr92.korben_chan_bot;
 import com.aaronr92.korben_chan_bot.command.*;
 import com.aaronr92.korben_chan_bot.listener.FileReader;
 import com.aaronr92.korben_chan_bot.listener.MessageListener;
+import com.aaronr92.korben_chan_bot.service.ButtonService;
 import com.aaronr92.korben_chan_bot.service.CommandService;
 import com.aaronr92.korben_chan_bot.service.UserService;
 import com.aaronr92.korben_chan_bot.util.EmbedFactory;
@@ -28,6 +29,7 @@ public class Bot {
         EmbedFactory embedFactory = new EmbedFactory();
         UserService userService = new UserService(embedFactory);
         CommandService commandService = new CommandService(userService, embedFactory);
+        ButtonService service = new ButtonService(userService);
 
         jda = JDABuilder.createLight(TOKEN, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                 .setBulkDeleteSplittingEnabled(false)
@@ -51,9 +53,9 @@ public class Bot {
                 Commands.slash("инфо", "Информация о тебе"),
                 Commands.slash("ship", "Совместимость между двумя пользователями")
                         .addOptions(new OptionData(OptionType.USER, "пользователь_1",
-                                "Первый пользователь"))
+                                "Первый пользователь", true))
                         .addOptions(new OptionData(OptionType.USER, "пользователь_2",
-                                "Второй пользователь")),
+                                "Второй пользователь", true)),
                 // Admin commands
                 Commands.slash("post", "Отправляет ембед в выбранный канал")
                         .addOptions(new OptionData(OptionType.CHANNEL, "канал",

@@ -30,13 +30,12 @@ public class UserService {
             }
             return embedFactory
                     .getEmbed(EmbedFactory.Type.MONEY, reward);
-        } catch (IOException | InterruptedException ignored) {
-
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
         } catch (IllegalArgumentException e) {
             return embedFactory
                     .getEmbed(EmbedFactory.Type.BOX_ERROR, null);
         }
-        return null;
     }
 
     public MessageEmbed getUserInfo(long id) {
