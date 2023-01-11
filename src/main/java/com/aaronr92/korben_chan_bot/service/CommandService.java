@@ -1,19 +1,20 @@
 package com.aaronr92.korben_chan_bot.service;
 
+import com.aaronr92.korben_chan_bot.exception.ExpeditionNotFoundException;
 import com.aaronr92.korben_chan_bot.util.EmbedFactory;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.interactions.components.ItemComponent;
+import net.dv8tion.jda.api.interactions.components.buttons.Button;
 
+import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 public class CommandService {
 
     private final UserService userService;
     private final EmbedFactory embedFactory;
     private final Random random = new Random();
-    private final Set<String> shipUsers = Set.of("597911681720647726",
-            "494204801761148928");
 
     public CommandService(UserService userService, EmbedFactory embedFactory) {
         this.userService = userService;
@@ -39,13 +40,37 @@ public class CommandService {
 
         int percent = random.nextInt(101);
 
-        if (shipUsers.contains(u1.getId()) &&
-                shipUsers.contains(u2.getId())) {
-            percent = 100;
+        event.replyEmbeds(embedFactory
+                .getEmbed(EmbedFactory.Type.SHIP,
+                        String.valueOf(percent),
+                        u1.getName(),
+                        u2.getName()
+                ))
+                .queue();
+    }
+
+    public void expedition(SlashCommandInteractionEvent event) {
+        long userId = event.getMember().getIdLong();
+
+        try {
+            event.replyEmbeds(userService.getExpedition(userId))
+                    .queue();
+            return;
+        } catch (ExpeditionNotFoundException ignored) { }
+
+        List<String> tanks = (List<String>) userService
+                .getTanksNames(userId);
+
+        ItemComponent[] buttons = new ItemComponent[tanks.size()];
+
+        for (int i = 0; i < tanks.size(); i++) {
+            String name = tanks.get(i);
+            buttons[i] = Button.primary("Tank " + name, name);
         }
 
-        event.replyEmbeds(embedFactory
-                .getEmbed(EmbedFactory.Type.SHIP, String.valueOf(percent)))
+        event.replyEmbeds(userService.expeditionCreationEmbed(userId))
+                .addActionRow(buttons)
+                .setEphemeral(true)
                 .queue();
     }
 }

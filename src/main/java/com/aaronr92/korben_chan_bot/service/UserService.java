@@ -28,6 +28,7 @@ public class UserService {
                 return embedFactory
                         .getEmbed(EmbedFactory.Type.TANK, reward);
             }
+
             return embedFactory
                     .getEmbed(EmbedFactory.Type.MONEY, reward);
         } catch (IOException | InterruptedException e) {
