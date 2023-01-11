@@ -65,7 +65,7 @@ public class CommandService {
 
         for (int i = 0; i < tanks.size(); i++) {
             String name = tanks.get(i);
-            buttons[i] = Button.primary(name, name);
+            buttons[i] = Button.primary("Tank " + name, name);
         }
 
         event.replyEmbeds(userService.expeditionCreationEmbed(userId))

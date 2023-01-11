@@ -72,7 +72,7 @@ public class EmbedFactory {
                 EmbedBuilder builder = new EmbedBuilder();
                 builder.addField(
                         EXPEDITION,
-                        "✅ Успешное начало экспедиции! ✅",
+                        "✅ Успешное начало вылазки! ✅",
                         false
                 );
                 builder.setColor(Color.GREEN);
