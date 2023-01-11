@@ -24,8 +24,7 @@ public class ExpeditionCommand extends ListenerAdapter {
 
     @Override
     public void onButtonInteraction(ButtonInteractionEvent event) {
-        if (event.getButton().getId().startsWith("Tank")) {
-            buttonService.startExpedition(event);
-        }
+        if (event.getButton().getId().startsWith("Tank"))
+            buttonService.createExpedition(event);
     }
 }

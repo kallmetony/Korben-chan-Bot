@@ -3,6 +3,7 @@ package com.aaronr92.korben_chan_bot;
 import com.aaronr92.korben_chan_bot.command.*;
 import com.aaronr92.korben_chan_bot.listener.FileReader;
 import com.aaronr92.korben_chan_bot.listener.MessageListener;
+import com.aaronr92.korben_chan_bot.service.ButtonService;
 import com.aaronr92.korben_chan_bot.service.CommandService;
 import com.aaronr92.korben_chan_bot.service.UserService;
 import com.aaronr92.korben_chan_bot.util.EmbedFactory;
@@ -28,6 +29,7 @@ public class Bot {
         EmbedFactory embedFactory = new EmbedFactory();
         UserService userService = new UserService(embedFactory);
         CommandService commandService = new CommandService(userService, embedFactory);
+        ButtonService buttonService = new ButtonService(userService);
 
         jda = JDABuilder.createLight(TOKEN, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                 .setBulkDeleteSplittingEnabled(false)
@@ -35,7 +37,7 @@ public class Bot {
                 .addEventListeners(new MessageListener(), new SayCommand(), new AddKeywordCommand(),
                         new FileReader(), new HelpCommand(), new SendEmbedCommand(), new SendInfoCommand(),
                         new OpenBoxCommand(commandService), new InfoCommand(commandService),
-                        new ShipCommand(commandService), new ExpeditionCommand(commandService))
+                        new ShipCommand(commandService), new ExpeditionCommand(commandService, buttonService))
                 .build();
 
         jda.updateCommands().addCommands(

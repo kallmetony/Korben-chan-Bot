@@ -1,6 +1,5 @@
 package com.aaronr92.korben_chan_bot.service;
 
-import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 
 public class ButtonService {
@@ -10,9 +9,10 @@ public class ButtonService {
         this.userService = userService;
     }
 
-    public void startExpedition(ButtonInteractionEvent event) {
+    public void createExpedition(ButtonInteractionEvent event) {
         event.replyEmbeds(userService
-                        .createExpedition(event.getUser().getIdLong(), event.getButton().getLabel()))
+                .createExpedition(event.getUser().getIdLong(),
+                        event.getButton().getLabel()))
                 .queue();
     }
 }
