@@ -15,7 +15,7 @@ import java.net.http.HttpResponse;
 public class BotHttpClient {
     private static final HttpClient client = HttpClient.newHttpClient();
     private static final String serverPath =
-            "http://localhost:9099/api/v1/";
+            "http://host.docker.internal:9098/api/v1/";
     private static final String boxPath = "box/";
     private static final String userPath = "user/";
     private static final String expeditionPath = "expedition/";
