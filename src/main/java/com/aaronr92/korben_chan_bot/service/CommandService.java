@@ -73,4 +73,10 @@ public class CommandService {
                 .setEphemeral(true)
                 .queue();
     }
+
+    public void help(SlashCommandInteractionEvent event) {
+        event.replyEmbeds(embedFactory.getEmbed(EmbedFactory.Type.HELP))
+                .setEphemeral(false)
+                .queue();
+    }
 }

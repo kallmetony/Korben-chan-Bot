@@ -1,8 +1,7 @@
 package com.aaronr92.korben_chan_bot;
 
-import com.aaronr92.korben_chan_bot.command.*;
-import com.aaronr92.korben_chan_bot.listener.FileReader;
-import com.aaronr92.korben_chan_bot.listener.MessageListener;
+import com.aaronr92.korben_chan_bot.hander.ButtonHandler;
+import com.aaronr92.korben_chan_bot.hander.CommandHandler;
 import com.aaronr92.korben_chan_bot.service.ButtonService;
 import com.aaronr92.korben_chan_bot.service.CommandService;
 import com.aaronr92.korben_chan_bot.service.UserService;
@@ -31,13 +30,12 @@ public class Bot {
         CommandService commandService = new CommandService(userService, embedFactory);
         ButtonService buttonService = new ButtonService(userService);
 
-        jda = JDABuilder.createLight(TOKEN, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
+        jda = JDABuilder
+                .createLight(TOKEN, GatewayIntent.GUILD_MESSAGES,
+                        GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                 .setBulkDeleteSplittingEnabled(false)
                 .setActivity(Activity.playing("Мир Танков"))
-                .addEventListeners(new MessageListener(), new SayCommand(), new AddKeywordCommand(),
-                        new FileReader(), new HelpCommand(), new SendEmbedCommand(), new SendInfoCommand(),
-                        new OpenBoxCommand(commandService), new InfoCommand(commandService),
-                        new ShipCommand(commandService), new ExpeditionCommand(commandService, buttonService))
+                .addEventListeners(new CommandHandler(commandService), new ButtonHandler(buttonService))
                 .build();
 
         jda.updateCommands().addCommands(
@@ -49,29 +47,16 @@ public class Bot {
                                 "Фраза, на которую бот ответит", true))
                         .addOptions(new OptionData(OptionType.STRING, "ответ",
                                 "Фраза, которой бот ответит", true)),
-                Commands.slash("открыть", "Открыть ежедневную коробку!"),
-                Commands.slash("инфо", "Информация о тебе"),
+                Commands.slash("коробка", "Открыть ежедневную коробку!"),
+                Commands.slash("ангар", "Информация о том, что у тебя есть"),
                 Commands.slash("ship", "Совместимость между двумя пользователями")
                         .addOptions(new OptionData(OptionType.USER, "пользователь_1",
                                 "Первый пользователь"))
                         .addOptions(new OptionData(OptionType.USER, "пользователь_2",
                                 "Второй пользователь")),
                 Commands.slash("вылазка", "Начать вылазку или посмотреть её статус"),
+                Commands.slash("помощь", "Узнай что может бот!"),
                 // Admin commands
-                Commands.slash("post", "Отправляет ембед в выбранный канал")
-                        .addOptions(new OptionData(OptionType.CHANNEL, "канал",
-                                "Канал, в который будет оптравлено сообщение", true))
-                        .addOptions(new OptionData(OptionType.STRING, "заголовок",
-                                "Заголовок сообщения", true))
-                        .addOptions(new OptionData(OptionType.STRING, "сообщение",
-                                "Сообщение, которое будет отправлено", true))
-                        .addOptions(new OptionData(OptionType.STRING, "цвет",
-                                "Цвет эмбеда")
-                                .addChoice("Белый", "White")
-                                .addChoice("Розовый", "Pink")
-                                .addChoice("Красный", "Red")
-                                .addChoice("Оранжевый", "Orange"))
-                        .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR)),
                 Commands.slash("info", "Отправляет сообщение в информационный канал")
                         .addOptions(new OptionData(OptionType.CHANNEL, "канал",
                                 "Канал, в который будет отправлено сообщение", true))

@@ -4,6 +4,7 @@ import com.aaronr92.korben_chan_bot.Bot;
 import com.google.gson.JsonObject;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.entities.SelfUser;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
@@ -17,69 +18,59 @@ public class EmbedFactory {
     private final String CLOCK = "⏰ Оставшееся время ⏰";
     private final String IN_EXPEDITION = "В вылазке";
 
+    private final SelfUser bot = Bot.jda.getSelfUser();
+
     public MessageEmbed getEmbed(Type type, @Nullable String... args) {
+        EmbedBuilder builder = new EmbedBuilder();
         switch (type) {
             case MONEY -> {
-                EmbedBuilder builder = new EmbedBuilder();
                 builder.addField(
                         BOX,
                         "Тебе выпало " + args[0] + " \uD83E\uDE99 монет!",
                         false);
                 builder.setColor(Color.YELLOW);
-                return builder.build();
             }
             case TANK -> {
-                EmbedBuilder builder = new EmbedBuilder();
                 builder.addField(
                         BOX,
                         "Тебе выпал танк ⭐" + args[0] + " ⭐",
                         false
                 );
                 builder.setColor(Color.MAGENTA);
-                return builder.build();
             }
             case BOX_ERROR -> {
-                EmbedBuilder builder = new EmbedBuilder();
                 builder.addField(
                         BOX,
                         "❌ Следующую коробку можно открыть только завтра ❌",
                         false
                 );
                 builder.setColor(Color.RED);
-                return builder.build();
             }
             case USER_NOT_FOUND -> {
-                EmbedBuilder builder = new EmbedBuilder();
                 builder.addField(
                         BOT,
                         "Пользователь не найден. Открой хотябы одну коробку",
                         false
                 );
                 builder.setColor(Color.RED);
-                return builder.build();
             }
             case SHIP -> {
-                EmbedBuilder builder = new EmbedBuilder();
                 builder.addField(
                         "\uD83D\uDC95 Совместимость \uD83D\uDC95",
                         args[1] + " и " + args[2] + " совместимы на " + args[0] + "%",
                         false
                 );
                 builder.setColor(Color.PINK);
-                return builder.build();
             }
             case SUCCESSFUL_EXPEDITION_CREATION -> {
-                EmbedBuilder builder = new EmbedBuilder();
                 builder.addField(
                         EXPEDITION,
                         "✅ Успешное начало вылазки! ✅",
                         false
                 );
                 builder.setColor(Color.GREEN);
-                return builder.build();
             }
             case EXPEDITION_CREATION -> {
-                EmbedBuilder builder = new EmbedBuilder();
                 builder.setTitle(EXPEDITION);
                 builder.addField(
                         "Выбор танка",
@@ -87,10 +78,18 @@ public class EmbedFactory {
                         false
                 );
                 builder.setColor(Color.PINK);
-                return builder.build();
+            }
+            case HELP -> {
+                builder.setTitle("Помощь");
+                builder.setDescription("Тут всё, что умеет бот");
+                builder.addField("Коробка", "Бесплатная коробка, содержащая золото и другие ценные награды", true);
+                builder.addField("Вылазка", "Вылазка, в результате которой ты получишь достойные награды", true);
+                builder.addField("Ангар", "Информация о твоих танках и количестве золота", true);
+                builder.setColor(Color.PINK);
             }
         }
-        return null;
+        builder.setAuthor(bot.getName(), bot.getAvatarUrl(), bot.getAvatarUrl());
+        return builder.build();
     }
 
     public MessageEmbed getUserInfoEmbed(
@@ -144,6 +143,7 @@ public class EmbedFactory {
         SHIP,
         SUCCESSFUL_EXPEDITION_CREATION,
         ALREADY_IN_EXPEDITION,
-        EXPEDITION_CREATION
+        EXPEDITION_CREATION,
+        HELP
     }
 }

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Objects;
 import java.util.Random;
 
+@Deprecated
 public class AddKeywordCommand extends ListenerAdapter {
     private final String[] replies = {"Готово!", "Есть!", "Добавил я..", "Ну и что дальше?"};
     private final Random r = new Random();

@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 
+@Deprecated
 public class SendEmbedCommand extends ListenerAdapter {
 
     @Override
