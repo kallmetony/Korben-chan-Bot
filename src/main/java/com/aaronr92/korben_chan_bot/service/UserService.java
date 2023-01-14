@@ -20,6 +20,11 @@ public class UserService {
         this.embedFactory = embedFactory;
     }
 
+    /**
+     * Opens a box for specified user
+     * @param id an id if a user
+     * @return embed to reply
+     */
     public MessageEmbed openBox(long id) {
         try {
             JsonObject json = BotHttpClient
@@ -42,6 +47,11 @@ public class UserService {
         return null;
     }
 
+    /**
+     * Returns all information about user
+     * @param id an id of a user
+     * @return embed to reply
+     */
     public MessageEmbed getUserInfo(long id) {
         try {
             JsonObject json = BotHttpClient.getUser(id);
@@ -62,16 +72,26 @@ public class UserService {
         }
     }
 
+    /**
+     *
+     * @param userId an id of a user
+     * @return
+     */
     public MessageEmbed getUserStartExpedition(long userId) {
         try {
             JsonObject json = BotHttpClient.getUser(userId);
-
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
         return null;
     }
 
+    /**
+     * Creates an expedition for a user
+     * @param userId an id of a user
+     * @param tankName name of a tank
+     * @return embed to reply
+     */
     public MessageEmbed createExpedition(long userId, String tankName) {
         try {
             if (BotHttpClient.createExpedition(userId, tankName) == 201) {
@@ -89,13 +109,21 @@ public class UserService {
         return null;
     }
 
+    /**
+     * Returns a successful start message
+     * @param userId an id of a user
+     * @return embed to reply
+     */
     public MessageEmbed expeditionCreationEmbed(long userId) {
-        Collection<JsonObject> tanks = getTanks(userId);
-
         return embedFactory
                 .getEmbed(EmbedFactory.Type.EXPEDITION_CREATION);
     }
 
+    /**
+     * Returns information about expedition
+     * @param userId an id of a user
+     * @return embed to reply
+     */
     public MessageEmbed getExpedition(long userId) {
         try {
             JsonObject json = BotHttpClient.getExpedition(userId);
@@ -108,6 +136,11 @@ public class UserService {
         }
     }
 
+    /**
+     * Returns collection of JsonObjects of user tanks
+     * @param userId an id of a user
+     * @return collection containing user tanks
+     */
     private Collection<JsonObject> getTanks(long userId) {
         try {
             JsonObject json = BotHttpClient.getUser(userId);
@@ -123,6 +156,11 @@ public class UserService {
         }
     }
 
+    /**
+     * Returns a collection of Strings of all tank names
+     * @param userId an id of a user
+     * @return collection containing tank names
+     */
     public Collection<String> getTanksNames(long userId) {
         Collection<JsonObject> tanks = getTanks(userId);
         Collection<String> tanksName = new ArrayList<>();

@@ -12,8 +12,6 @@ import java.util.Map;
 
 public class MessageListener extends ListenerAdapter {
 
-    public static Map<String, String> keywords = new HashMap<>();
-
     private final Logger log = LoggerFactory.getLogger(MessageListener.class);
 
     @Override
@@ -23,25 +21,15 @@ public class MessageListener extends ListenerAdapter {
 
         String message = event.getMessage().getContentDisplay();
 
-        if (keywords.containsKey(message.toLowerCase())) {
-            event.getChannel().sendMessage(keywords.get(message.toLowerCase())).queue();
-        }
-//
 //        if (message.equals(message.toUpperCase()) &&
 //                message.length() > 4 &&
 //                !message.matches("^[a-z0-9\\s\\-]*$") &&
 //                !message.contains("@")) {
-//            event.getMessage().reply("Не капси уебина").queue();
+//            event.getMessage().reply("Не капси").queue();
 //        }
 
         if (log.isDebugEnabled()) {
-            try {
-                log.debug("{} send: {}",
-                        new String(event.getAuthor().getName().getBytes(StandardCharsets.UTF_8), "windows-1251"),
-                        new String(message.getBytes(StandardCharsets.UTF_8), "windows-1251"));
-            } catch (UnsupportedEncodingException e) {
-                throw new RuntimeException(e);
-            }
+            log.debug("{} send: {}", event.getAuthor().getName(), message);
         }
     }
 

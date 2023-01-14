@@ -18,22 +18,21 @@ public class EmbedFactory {
     private final String CLOCK = "⏰ Оставшееся время ⏰";
     private final String IN_EXPEDITION = "В вылазке";
 
-    private final SelfUser bot = Bot.jda.getSelfUser();
-
     public MessageEmbed getEmbed(Type type, @Nullable String... args) {
         EmbedBuilder builder = new EmbedBuilder();
+        final SelfUser bot = Bot.jda.getSelfUser();
         switch (type) {
             case MONEY -> {
                 builder.addField(
                         BOX,
-                        "Тебе выпало " + args[0] + " \uD83E\uDE99 монет!",
+                        "Тебе выпало `" + args[0] + "` \uD83E\uDE99 монет!",
                         false);
                 builder.setColor(Color.YELLOW);
             }
             case TANK -> {
                 builder.addField(
                         BOX,
-                        "Тебе выпал танк ⭐" + args[0] + " ⭐",
+                        "Тебе выпал танк ⭐`" + args[0] + "` ⭐",
                         false
                 );
                 builder.setColor(Color.MAGENTA);
@@ -57,7 +56,7 @@ public class EmbedFactory {
             case SHIP -> {
                 builder.addField(
                         "\uD83D\uDC95 Совместимость \uD83D\uDC95",
-                        args[1] + " и " + args[2] + " совместимы на " + args[0] + "%",
+                        args[1] + " и " + args[2] + " совместимы на `" + args[0] + "` %",
                         false
                 );
                 builder.setColor(Color.PINK);
@@ -83,7 +82,7 @@ public class EmbedFactory {
                 builder.setTitle("Помощь");
                 builder.setDescription("Тут всё, что умеет бот");
                 builder.addField("Коробка", "Бесплатная коробка, содержащая золото и другие ценные награды", true);
-                builder.addField("Вылазка", "Вылазка, в результате которой ты получишь достойные награды", true);
+                builder.addField("Вылазка", "Вылазка, в результате которой ты получишь достойные награды, рандомная длительность до `6` часов", true);
                 builder.addField("Ангар", "Информация о твоих танках и количестве золота", true);
                 builder.setColor(Color.PINK);
             }

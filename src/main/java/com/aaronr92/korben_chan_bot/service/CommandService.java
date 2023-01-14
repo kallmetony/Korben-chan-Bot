@@ -21,6 +21,10 @@ public class CommandService {
         this.embedFactory = embedFactory;
     }
 
+    /**
+     * Opens a box
+     * @param event an event
+     */
     public void openBox(SlashCommandInteractionEvent event) {
         event.replyEmbeds(userService
                 .openBox(event.getMember().getIdLong()))
@@ -28,12 +32,20 @@ public class CommandService {
                 .queue();
     }
 
+    /**
+     * Gets user info
+     * @param event an event
+     */
     public void getUserInfo(SlashCommandInteractionEvent event) {
         event.replyEmbeds(userService.getUserInfo(event.getMember().getIdLong()))
                 .setEphemeral(false)
                 .queue();
     }
 
+    /**
+     * Ships one user to another returning a compatibility between them
+     * @param event an event
+     */
     public void ship(SlashCommandInteractionEvent event) {
         User u1 = event.getOption("пользователь_1").getAsUser();
         User u2 = event.getOption("пользователь_2").getAsUser();
@@ -49,6 +61,10 @@ public class CommandService {
                 .queue();
     }
 
+    /**
+     * Starts expedition or gets remaining time
+     * @param event an event
+     */
     public void expedition(SlashCommandInteractionEvent event) {
         long userId = event.getMember().getIdLong();
 
@@ -74,6 +90,10 @@ public class CommandService {
                 .queue();
     }
 
+    /**
+     * Sends help message
+     * @param event an event
+     */
     public void help(SlashCommandInteractionEvent event) {
         event.replyEmbeds(embedFactory.getEmbed(EmbedFactory.Type.HELP))
                 .setEphemeral(false)

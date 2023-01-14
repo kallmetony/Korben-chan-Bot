@@ -2,6 +2,7 @@ package com.aaronr92.korben_chan_bot;
 
 import com.aaronr92.korben_chan_bot.hander.ButtonHandler;
 import com.aaronr92.korben_chan_bot.hander.CommandHandler;
+import com.aaronr92.korben_chan_bot.listener.MessageListener;
 import com.aaronr92.korben_chan_bot.service.ButtonService;
 import com.aaronr92.korben_chan_bot.service.CommandService;
 import com.aaronr92.korben_chan_bot.service.UserService;
@@ -35,29 +36,25 @@ public class Bot {
                         GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                 .setBulkDeleteSplittingEnabled(false)
                 .setActivity(Activity.playing("Мир Танков"))
-                .addEventListeners(new CommandHandler(commandService), new ButtonHandler(buttonService))
+                .addEventListeners(new CommandHandler(commandService), new ButtonHandler(buttonService),
+                        new MessageListener())
                 .build();
 
         jda.updateCommands().addCommands(
                 Commands.slash("сказать", "Говорит что-то")
                         .addOptions(new OptionData(OptionType.STRING, "текст",
-                                "Текст для того, чтобы сказать", true)),
-                Commands.slash("добавить", "Добавляет новый случай слово - ответ")
-                        .addOptions(new OptionData(OptionType.STRING, "слово",
-                                "Фраза, на которую бот ответит", true))
-                        .addOptions(new OptionData(OptionType.STRING, "ответ",
-                                "Фраза, которой бот ответит", true)),
+                                "Текст для того, чтобы сказать", true, true)),
                 Commands.slash("коробка", "Открыть ежедневную коробку!"),
                 Commands.slash("ангар", "Информация о том, что у тебя есть"),
                 Commands.slash("ship", "Совместимость между двумя пользователями")
                         .addOptions(new OptionData(OptionType.USER, "пользователь_1",
-                                "Первый пользователь"))
+                                "Первый пользователь", true, true))
                         .addOptions(new OptionData(OptionType.USER, "пользователь_2",
-                                "Второй пользователь")),
+                                "Второй пользователь", true, true)),
                 Commands.slash("вылазка", "Начать вылазку или посмотреть её статус"),
                 Commands.slash("помощь", "Узнай что может бот!"),
                 // Admin commands
-                Commands.slash("info", "Отправляет сообщение в информационный канал")
+                Commands.slash("info", "Отправить сообщение в информационный канал")
                         .addOptions(new OptionData(OptionType.CHANNEL, "канал",
                                 "Канал, в который будет отправлено сообщение", true))
                         .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))

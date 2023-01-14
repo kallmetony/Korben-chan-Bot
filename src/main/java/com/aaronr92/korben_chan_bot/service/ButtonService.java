@@ -9,6 +9,10 @@ public class ButtonService {
         this.userService = userService;
     }
 
+    /**
+     * Creates new expedition with specified tank
+     * @param event an event
+     */
     public void createExpedition(ButtonInteractionEvent event) {
         event.replyEmbeds(userService
                 .createExpedition(event.getUser().getIdLong(),

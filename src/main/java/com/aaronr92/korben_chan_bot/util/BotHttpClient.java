@@ -20,6 +20,12 @@ public class BotHttpClient {
     private static final String userPath = "user/";
     private static final String expeditionPath = "expedition/";
 
+    /**
+     * Sends a request to the server to open a box and get result of action
+     * @param id an id of a user
+     * @return JsonObject representing response of the server
+     * @throws IllegalArgumentException if user cannot open box today
+     */
     public static JsonObject openBox(long id)
             throws IOException, InterruptedException,
             IllegalArgumentException {
@@ -39,6 +45,14 @@ public class BotHttpClient {
         return new Gson().fromJson(response.body(), JsonObject.class);
     }
 
+    /**
+     * Sends a request to the server to get user info
+     * @param id an id of a user
+     * @return JsonObject representing response of the server
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws UserNotFoundException if the user is not found in db
+     */
     public static JsonObject getUser(long id)
             throws IOException, InterruptedException,
             UserNotFoundException {
@@ -58,6 +72,14 @@ public class BotHttpClient {
         return new Gson().fromJson(response.body(), JsonObject.class);
     }
 
+    /**
+     * Sends a request to the server to create new expedition
+     * @param userId an id of a user
+     * @param tankName name of the tank
+     * @return request status code
+     * @throws UserNotFoundException if the user is not found in db
+     * @throws AlreadyInExpeditionException if the user is already in expedition
+     */
     public static Integer createExpedition(long userId, String tankName)
             throws IOException, InterruptedException,
             UserNotFoundException, AlreadyInExpeditionException {
@@ -80,8 +102,16 @@ public class BotHttpClient {
         return response.statusCode();
     }
 
+    /**
+     * Sends a request to the server to get info about current expedition
+     * @param userId an id of a user
+     * @return JsonObject representing response of the server
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws ExpeditionNotFoundException if the last expedition is not found or finished
+     */
     public static JsonObject getExpedition(long userId)
-            throws IOException, InterruptedException {
+            throws IOException, InterruptedException, ExpeditionNotFoundException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(serverPath + expeditionPath + "user/" + userId))
                 .GET()
