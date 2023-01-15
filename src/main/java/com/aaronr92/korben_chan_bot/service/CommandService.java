@@ -1,7 +1,9 @@
 package com.aaronr92.korben_chan_bot.service;
 
+import com.aaronr92.korben_chan_bot.Bot;
 import com.aaronr92.korben_chan_bot.exception.ExpeditionNotFoundException;
 import com.aaronr92.korben_chan_bot.util.EmbedFactory;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.components.ItemComponent;
@@ -77,8 +79,13 @@ public class CommandService {
         List<String> tanks = (List<String>) userService
                 .getTanksNames(userId);
 
-        if (tanks.size() == 0)
+        if (tanks.size() == 0) {
+            event.replyEmbeds(embedFactory.getEmbed(EmbedFactory.Type.NOT_ENOUGH_TANKS,
+                            String.valueOf(userId)))
+                    .setEphemeral(true)
+                    .queue();
             return;
+        }
 
         ItemComponent[] buttons = new ItemComponent[tanks.size()];
 

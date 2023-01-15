@@ -96,6 +96,15 @@ public class EmbedFactory {
                 builder.setColor(Color.PINK);
                 builder.setAuthor(bot.getName(), null, bot.getAvatarUrl());
             }
+            case NOT_ENOUGH_TANKS -> {
+                builder.setTitle(EXPEDITION);
+                builder.addField(
+                        "❌ Невозможно начать вылазку ❌",
+                        "Для начала вылазки нужно иметь хотя-бы один танк",
+                        false
+                );
+                builder.setColor(Color.RED);
+            }
         }
         return builder.build();
     }
@@ -152,6 +161,7 @@ public class EmbedFactory {
         SUCCESSFUL_EXPEDITION_CREATION,
         ALREADY_IN_EXPEDITION,
         EXPEDITION_CREATION,
+        NOT_ENOUGH_TANKS,
         HELP
     }
 }
