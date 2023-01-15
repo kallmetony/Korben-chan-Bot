@@ -77,6 +77,9 @@ public class CommandService {
         List<String> tanks = (List<String>) userService
                 .getTanksNames(userId);
 
+        if (tanks.size() == 0)
+            return;
+
         ItemComponent[] buttons = new ItemComponent[tanks.size()];
 
         for (int i = 0; i < tanks.size(); i++) {
