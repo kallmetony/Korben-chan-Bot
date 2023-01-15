@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.SelfUser;
+import net.dv8tion.jda.api.entities.User;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
@@ -28,6 +29,7 @@ public class EmbedFactory {
                         "Тебе выпало `" + args[0] + "` \uD83E\uDE99 монет!",
                         false);
                 builder.setColor(Color.YELLOW);
+                builder.setAuthor(bot.getName(), null, bot.getAvatarUrl());
             }
             case TANK -> {
                 builder.addField(
@@ -36,6 +38,7 @@ public class EmbedFactory {
                         false
                 );
                 builder.setColor(Color.MAGENTA);
+                builder.setAuthor(bot.getName(), null, bot.getAvatarUrl());
             }
             case BOX_ERROR -> {
                 builder.addField(
@@ -44,6 +47,7 @@ public class EmbedFactory {
                         false
                 );
                 builder.setColor(Color.RED);
+                builder.setAuthor(bot.getName(), null, bot.getAvatarUrl());
             }
             case USER_NOT_FOUND -> {
                 builder.addField(
@@ -52,6 +56,7 @@ public class EmbedFactory {
                         false
                 );
                 builder.setColor(Color.RED);
+                builder.setAuthor(bot.getName(), null, bot.getAvatarUrl());
             }
             case SHIP -> {
                 builder.addField(
@@ -60,6 +65,7 @@ public class EmbedFactory {
                         false
                 );
                 builder.setColor(Color.PINK);
+                builder.setAuthor(bot.getName(), null, bot.getAvatarUrl());
             }
             case SUCCESSFUL_EXPEDITION_CREATION -> {
                 builder.addField(
@@ -68,6 +74,8 @@ public class EmbedFactory {
                         false
                 );
                 builder.setColor(Color.GREEN);
+                User user = Bot.retrieveUserById(Long.parseLong(args[0]));
+                builder.setAuthor(user.getName(), null, user.getAvatarUrl());
             }
             case EXPEDITION_CREATION -> {
                 builder.setTitle(EXPEDITION);
@@ -77,6 +85,7 @@ public class EmbedFactory {
                         false
                 );
                 builder.setColor(Color.PINK);
+                builder.setAuthor(bot.getName(), null, bot.getAvatarUrl());
             }
             case HELP -> {
                 builder.setTitle("Помощь");
@@ -85,9 +94,9 @@ public class EmbedFactory {
                 builder.addField("Вылазка", "Вылазка, в результате которой ты получишь достойные награды, рандомная длительность до `6` часов", true);
                 builder.addField("Ангар", "Информация о твоих танках и количестве золота", true);
                 builder.setColor(Color.PINK);
+                builder.setAuthor(bot.getName(), null, bot.getAvatarUrl());
             }
         }
-        builder.setAuthor(bot.getName(), bot.getAvatarUrl(), bot.getAvatarUrl());
         return builder.build();
     }
 
@@ -122,7 +131,7 @@ public class EmbedFactory {
         builder.setTitle(EXPEDITION);
         builder.addField(
                 CLOCK,
-                remainingTime,
+                "`" + remainingTime + "` ч.",
                 false
         );
         builder.addField(

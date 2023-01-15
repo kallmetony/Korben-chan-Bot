@@ -48,9 +48,9 @@ public class Bot {
                 Commands.slash("ангар", "Информация о том, что у тебя есть"),
                 Commands.slash("ship", "Совместимость между двумя пользователями")
                         .addOptions(new OptionData(OptionType.USER, "пользователь_1",
-                                "Первый пользователь", true, true))
+                                "Первый пользователь", true))
                         .addOptions(new OptionData(OptionType.USER, "пользователь_2",
-                                "Второй пользователь", true, true)),
+                                "Второй пользователь", true)),
                 Commands.slash("вылазка", "Начать вылазку или посмотреть её статус"),
                 Commands.slash("помощь", "Узнай что может бот!"),
                 // Admin commands
@@ -68,5 +68,13 @@ public class Bot {
         userAction.queue();
 
         return username;
+    }
+
+    public static User retrieveUserById(long userId) {
+        RestAction<User> userAction = jda.retrieveUserById(userId);
+        User user = userAction.complete();
+        userAction.queue();
+
+        return user;
     }
 }

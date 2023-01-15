@@ -96,7 +96,7 @@ public class UserService {
         try {
             if (BotHttpClient.createExpedition(userId, tankName) == 201) {
                 return embedFactory
-                        .getEmbed(EmbedFactory.Type.SUCCESSFUL_EXPEDITION_CREATION);
+                        .getEmbed(EmbedFactory.Type.SUCCESSFUL_EXPEDITION_CREATION, String.valueOf(userId));
             }
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
