@@ -2,6 +2,7 @@ package com.aaronr92.korben_chan_bot.util;
 
 import com.aaronr92.korben_chan_bot.exception.AlreadyInExpeditionException;
 import com.aaronr92.korben_chan_bot.exception.ExpeditionNotFoundException;
+import com.aaronr92.korben_chan_bot.exception.TankNotFoundException;
 import com.aaronr92.korben_chan_bot.exception.UserNotFoundException;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -126,5 +127,26 @@ public class BotHttpClient {
             throw new ExpeditionNotFoundException();
 
         return new Gson().fromJson(response.body(), JsonObject.class);
+    }
+
+    public static void sellTank(Long userId, String tankName)
+            throws IOException, InterruptedException,
+            AlreadyInExpeditionException, TankNotFoundException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverPath + userPath + userId +
+                        "?tankName=" + tankName + "&operation=SELL"))
+                .PUT(HttpRequest.BodyPublishers.noBody())
+                .build();
+
+        HttpResponse<String> response = client.send(
+                request,
+                HttpResponse.BodyHandlers.ofString()
+        );
+
+        if (response.statusCode() == 409)
+            throw new AlreadyInExpeditionException();
+
+        if (response.statusCode() == 404)
+            throw new TankNotFoundException();
     }
 }

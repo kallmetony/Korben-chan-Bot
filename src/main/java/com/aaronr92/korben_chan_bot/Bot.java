@@ -29,7 +29,7 @@ public class Bot {
         EmbedFactory embedFactory = new EmbedFactory();
         UserService userService = new UserService(embedFactory);
         CommandService commandService = new CommandService(userService, embedFactory);
-        ButtonService buttonService = new ButtonService(userService);
+        ButtonService buttonService = new ButtonService(userService, embedFactory);
 
         jda = JDABuilder
                 .createLight(TOKEN, GatewayIntent.GUILD_MESSAGES,

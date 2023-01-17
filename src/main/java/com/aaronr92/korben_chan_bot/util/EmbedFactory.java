@@ -70,7 +70,8 @@ public class EmbedFactory {
             case SUCCESSFUL_EXPEDITION_CREATION -> {
                 builder.addField(
                         EXPEDITION,
-                        "✅ Успешное начало вылазки! ✅",
+                        "✅ Успешное начало вылазки! ✅\n\n" +
+                                "Напиши `/вылазка` ещё раз для получения подробной информации",
                         false
                 );
                 builder.setColor(Color.GREEN);
@@ -104,6 +105,26 @@ public class EmbedFactory {
                         false
                 );
                 builder.setColor(Color.RED);
+            }
+            case SELL_TANK -> {
+                builder.setTitle(args[0]);
+                builder.setDescription("Ты можешь продать этот танк, тебе вернется 50% от его цены");
+                builder.setColor(Color.PINK);
+                builder.setAuthor(bot.getName(), null, bot.getAvatarUrl());
+            }
+            case ALREADY_IN_EXPEDITION -> {
+                builder.setTitle("❌ Танк уже в вылазке ❌");
+                builder.setDescription("Подожди пока он вернется");
+                builder.setColor(Color.RED);
+            }
+            case TANK_NOT_FOUND -> {
+                builder.setTitle("❌ Танк не найден ❌");
+                builder.setColor(Color.RED);
+            }
+            case SUCCESS -> {
+                builder.setTitle("✅ Операция успешно выполнена ✅");
+                builder.setColor(Color.GREEN);
+                builder.setAuthor(args[0], null, args[1]);
             }
         }
         return builder.build();
@@ -162,6 +183,9 @@ public class EmbedFactory {
         ALREADY_IN_EXPEDITION,
         EXPEDITION_CREATION,
         NOT_ENOUGH_TANKS,
+        SELL_TANK,
+        TANK_NOT_FOUND,
+        SUCCESS,
         HELP
     }
 }

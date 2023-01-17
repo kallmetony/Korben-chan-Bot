@@ -161,7 +161,7 @@ public class UserService {
      * @param userId an id of a user
      * @return collection containing tank names
      */
-    public Collection<String> getTanksNames(long userId) {
+    public Collection<String> getTankNames(long userId) {
         Collection<JsonObject> tanks = getTanks(userId);
         Collection<String> tanksName = new ArrayList<>();
 

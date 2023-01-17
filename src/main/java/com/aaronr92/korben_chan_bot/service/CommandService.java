@@ -1,13 +1,13 @@
 package com.aaronr92.korben_chan_bot.service;
 
-import com.aaronr92.korben_chan_bot.Bot;
 import com.aaronr92.korben_chan_bot.exception.ExpeditionNotFoundException;
 import com.aaronr92.korben_chan_bot.util.EmbedFactory;
-import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.components.ItemComponent;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
+import net.dv8tion.jda.api.requests.RestAction;
+import net.dv8tion.jda.api.requests.restaction.interactions.ReplyCallbackAction;
 
 import java.util.List;
 import java.util.Random;
@@ -39,7 +39,22 @@ public class CommandService {
      * @param event an event
      */
     public void getUserInfo(SlashCommandInteractionEvent event) {
-        event.replyEmbeds(userService.getUserInfo(event.getMember().getIdLong()))
+        long userId = event.getMember().getIdLong();
+        List<String> tanks = (List<String>) userService.getTankNames(userId);
+
+        ReplyCallbackAction replyAction = event.replyEmbeds(userService.getUserInfo(userId));
+        if (tanks.size() != 0) {
+            Button[] buttons = new Button[tanks.size()];
+
+            for (int i = 0; i < tanks.size(); i++) {
+                String name = tanks.get(i);
+                buttons[i] = Button.secondary("Hangar " + name, name);
+            }
+
+            replyAction.addActionRow(buttons);
+        }
+
+        replyAction
                 .setEphemeral(false)
                 .queue();
     }
@@ -77,7 +92,7 @@ public class CommandService {
         } catch (ExpeditionNotFoundException ignored) { }
 
         List<String> tanks = (List<String>) userService
-                .getTanksNames(userId);
+                .getTankNames(userId);
 
         if (tanks.size() == 0) {
             event.replyEmbeds(embedFactory.getEmbed(EmbedFactory.Type.NOT_ENOUGH_TANKS,
