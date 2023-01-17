@@ -43,7 +43,7 @@ public class Bot {
         jda.updateCommands().addCommands(
                 Commands.slash("сказать", "Говорит что-то")
                         .addOptions(new OptionData(OptionType.STRING, "текст",
-                                "Текст для того, чтобы сказать", true, true)),
+                                "Текст для того, чтобы сказать", true)),
                 Commands.slash("коробка", "Открыть ежедневную коробку!"),
                 Commands.slash("ангар", "Информация о том, что у тебя есть"),
                 Commands.slash("ship", "Совместимость между двумя пользователями")
