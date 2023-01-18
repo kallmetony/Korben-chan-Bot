@@ -18,6 +18,7 @@ public class EmbedFactory {
     private final String EXPEDITION = "\uD83D\uDEA9 Вылазка \uD83D\uDEA9";
     private final String CLOCK = "⏰ Оставшееся время ⏰";
     private final String IN_EXPEDITION = "В вылазке";
+    private final String SHOP = "\uD83D\uDED2 Магазин \uD83D\uDED2";
 
     public MessageEmbed getEmbed(Type type, @Nullable String... args) {
         EmbedBuilder builder = new EmbedBuilder();
@@ -170,6 +171,29 @@ public class EmbedFactory {
                 false
         );
         builder.setColor(Color.PINK);
+        return builder.build();
+    }
+
+    public MessageEmbed getShop(
+            Collection<JsonObject> tanks,
+            Collection<JsonObject> boxes
+    ) {
+        EmbedBuilder builder = new EmbedBuilder();
+        builder.setTitle(SHOP);
+        for (JsonObject box :
+                boxes) {
+            // TODO: Add fields for each box
+        }
+        builder.addBlankField(false);
+        for (JsonObject tank :
+                tanks) {
+            // TODO: Add fields for each Tank
+        }
+        builder.addField(
+                "Слот в ангаре",
+                "Цена " + 1000 + " \uD83E\uDE99",
+                false);
+        builder.setColor(Color.pink);
         return builder.build();
     }
 

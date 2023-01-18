@@ -4,7 +4,6 @@ import com.aaronr92.korben_chan_bot.exception.AlreadyInExpeditionException;
 import com.aaronr92.korben_chan_bot.exception.TankNotFoundException;
 import com.aaronr92.korben_chan_bot.util.BotHttpClient;
 import com.aaronr92.korben_chan_bot.util.EmbedFactory;
-import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
@@ -65,5 +64,9 @@ public class ButtonService {
                         author.getAvatarUrl()
                 ))
                 .queue();
+    }
+
+    public void buy(ButtonInteractionEvent event, Button button) {
+        // TODO: Buy operation
     }
 }

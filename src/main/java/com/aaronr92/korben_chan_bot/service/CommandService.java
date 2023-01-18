@@ -1,14 +1,17 @@
 package com.aaronr92.korben_chan_bot.service;
 
 import com.aaronr92.korben_chan_bot.exception.ExpeditionNotFoundException;
+import com.aaronr92.korben_chan_bot.util.BotHttpClient;
 import com.aaronr92.korben_chan_bot.util.EmbedFactory;
+import com.google.gson.JsonObject;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.components.ItemComponent;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
-import net.dv8tion.jda.api.requests.RestAction;
 import net.dv8tion.jda.api.requests.restaction.interactions.ReplyCallbackAction;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -122,6 +125,31 @@ public class CommandService {
     public void help(SlashCommandInteractionEvent event) {
         event.replyEmbeds(embedFactory.getEmbed(EmbedFactory.Type.HELP))
                 .setEphemeral(false)
+                .queue();
+    }
+
+    public void openShop(SlashCommandInteractionEvent event) {
+        Collection<JsonObject> tanks = List.of(
+                BotHttpClient.getTankById()
+        );
+        Collection<JsonObject> boxes = List.of(
+                BotHttpClient.getBoxById()
+        );
+        Button[] tankButtons = new Button[tanks.size()];
+        for (JsonObject tank :
+                tanks) {
+            // TODO: Add tankButtons in button
+        }
+        Button[] boxButtons = new Button[boxes.size()];
+        for (JsonObject box :
+                boxes) {
+            // TODO: Add box in button
+        }
+        MessageEmbed embed = embedFactory.getShop(tanks, boxes);
+        event.replyEmbeds(embed)
+                .addActionRow(tankButtons)
+                .addActionRow(boxButtons)
+                .addActionRow(Button.secondary("Buy Slot", "Слот"))
                 .queue();
     }
 }
