@@ -125,7 +125,20 @@ public class EmbedFactory {
             case SUCCESS -> {
                 builder.setTitle("✅ Операция успешно выполнена ✅");
                 builder.setColor(Color.GREEN);
-                builder.setAuthor(args[0], null, args[1]);
+                if (args.length == 2)
+                    builder.setAuthor(args[0], null, args[1]);
+            }
+            case NOT_ENOUGH_MONEY -> {
+                builder.setTitle("❌ Недостаточно средств ❌");
+                builder.setColor(Color.RED);
+                if (args.length == 2)
+                    builder.setAuthor(args[0], null, args[1]);
+            }
+            case TANK_ALREADY_IN_HANGAR -> {
+                builder.setTitle("❌ Танк уже в твоем ангаре ❌");
+                builder.setColor(Color.PINK);
+                if (args.length == 2)
+                    builder.setAuthor(args[0], null, args[1]);
             }
         }
         return builder.build();
@@ -176,22 +189,29 @@ public class EmbedFactory {
 
     public MessageEmbed getShop(
             Collection<JsonObject> tanks,
-            Collection<JsonObject> boxes
+            @Nullable Collection<JsonObject> boxes
     ) {
         EmbedBuilder builder = new EmbedBuilder();
         builder.setTitle(SHOP);
-        for (JsonObject box :
-                boxes) {
-            // TODO: Add fields for each box
-        }
+//        for (JsonObject box :
+//                boxes) {
+//            // TODO: Add fields for each box
+//        }
         builder.addBlankField(false);
         for (JsonObject tank :
                 tanks) {
+            builder.addField(
+                    tank.get("name").getAsString(),
+                    '*' + tank.get("description").getAsString() + "*\n" +
+                    "**Цена: " + tank.get("price").getAsString() + " **\uD83E\uDE99",
+                    true
+            );
             // TODO: Add fields for each Tank
         }
+        builder.addBlankField(false);
         builder.addField(
                 "Слот в ангаре",
-                "Цена " + 1000 + " \uD83E\uDE99",
+                "**Цена: " + 1000 + " **\uD83E\uDE99",
                 false);
         builder.setColor(Color.pink);
         return builder.build();
@@ -207,8 +227,10 @@ public class EmbedFactory {
         ALREADY_IN_EXPEDITION,
         EXPEDITION_CREATION,
         NOT_ENOUGH_TANKS,
+        NOT_ENOUGH_MONEY,
         SELL_TANK,
         TANK_NOT_FOUND,
+        TANK_ALREADY_IN_HANGAR,
         SUCCESS,
         HELP
     }

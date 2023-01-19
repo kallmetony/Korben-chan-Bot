@@ -129,26 +129,27 @@ public class CommandService {
     }
 
     public void openShop(SlashCommandInteractionEvent event) {
-        Collection<JsonObject> tanks = List.of(
-                BotHttpClient.getTankById()
+        List<JsonObject> tanks = List.of(
+                BotHttpClient.getTankById(5),
+                BotHttpClient.getTankById(6)
         );
-        Collection<JsonObject> boxes = List.of(
-                BotHttpClient.getBoxById()
-        );
+//        Collection<JsonObject> boxes = List.of(
+//                BotHttpClient.getBoxById()
+//        );
         Button[] tankButtons = new Button[tanks.size()];
-        for (JsonObject tank :
-                tanks) {
-            // TODO: Add tankButtons in button
+        for (int i = 0; i < tanks.size(); i++) {
+            String tankName = tanks.get(i).get("name").getAsString();
+            tankButtons[i] = Button.primary("Buy Tank " + tankName, tankName);
         }
-        Button[] boxButtons = new Button[boxes.size()];
-        for (JsonObject box :
-                boxes) {
-            // TODO: Add box in button
-        }
-        MessageEmbed embed = embedFactory.getShop(tanks, boxes);
+//        Button[] boxButtons = new Button[boxes.size()];
+//        for (JsonObject box :
+//                boxes) {
+//            // TODO: Add box in button
+//        }
+        MessageEmbed embed = embedFactory.getShop(tanks, null/*boxes*/);
         event.replyEmbeds(embed)
                 .addActionRow(tankButtons)
-                .addActionRow(boxButtons)
+//                .addActionRow(boxButtons)
                 .addActionRow(Button.secondary("Buy Slot", "Слот"))
                 .queue();
     }

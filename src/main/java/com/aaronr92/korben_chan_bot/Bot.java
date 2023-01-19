@@ -44,6 +44,7 @@ public class Bot {
                 Commands.slash("сказать", "Говорит что-то")
                         .addOptions(new OptionData(OptionType.STRING, "текст",
                                 "Текст для того, чтобы сказать", true)),
+                Commands.slash("магазин", "Открыть магазин"),
                 Commands.slash("коробка", "Открыть ежедневную коробку!"),
                 Commands.slash("ангар", "Информация о том, что у тебя есть"),
                 Commands.slash("ship", "Совместимость между двумя пользователями")
