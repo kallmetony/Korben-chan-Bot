@@ -99,6 +99,8 @@ public class EmbedFactory {
                 builder.addField("Коробка", "Бесплатная коробка, содержащая золото и другие ценные награды", true);
                 builder.addField("Вылазка", "Вылазка, в результате которой ты получишь достойные награды, рандомная длительность до `6` часов", true);
                 builder.addField("Ангар", "Информация о твоих танках и количестве золота", true);
+                builder.addField("Вылазки", "Информация о последних вылазках игрока", true);
+                builder.addField("Магазин", "Магазин, в котором можно купить сезонные товары", true);
                 builder.setColor(Color.PINK);
                 builder.setAuthor(bot.getName(), null, bot.getAvatarUrl());
             }
