@@ -3,12 +3,14 @@ package com.aaronr92.korben_chan_bot.util;
 import com.aaronr92.korben_chan_bot.exception.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
 
 public class BotHttpClient {
     private static final HttpClient client = HttpClient.newHttpClient();
@@ -196,5 +198,21 @@ public class BotHttpClient {
 
         if (response.statusCode() == 409)
             throw new TankAlreadyInUserHangarException();
+    }
+
+    public static JsonObject getExpeditionPage(long userId)
+            throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create((serverPath + "expedition?" + "id=" + userId)
+                        .replace(" ", "%20")))
+                .GET()
+                .build();
+
+        HttpResponse<String> response = client.send(
+                request,
+                HttpResponse.BodyHandlers.ofString()
+        );
+
+        return new Gson().fromJson(response.body(), JsonObject.class);
     }
 }

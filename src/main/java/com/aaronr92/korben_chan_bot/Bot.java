@@ -53,6 +53,7 @@ public class Bot {
                         .addOptions(new OptionData(OptionType.USER, "пользователь_2",
                                 "Второй пользователь", true)),
                 Commands.slash("вылазка", "Начать вылазку или посмотреть её статус"),
+                Commands.slash("вылазки", "Твои последние вылазки"),
                 Commands.slash("помощь", "Узнай что может бот!"),
                 // Admin commands
                 Commands.slash("info", "Отправить сообщение в информационный канал")

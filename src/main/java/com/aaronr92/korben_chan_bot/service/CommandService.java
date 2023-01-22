@@ -3,6 +3,8 @@ package com.aaronr92.korben_chan_bot.service;
 import com.aaronr92.korben_chan_bot.exception.ExpeditionNotFoundException;
 import com.aaronr92.korben_chan_bot.util.BotHttpClient;
 import com.aaronr92.korben_chan_bot.util.EmbedFactory;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.User;
@@ -11,6 +13,8 @@ import net.dv8tion.jda.api.interactions.components.ItemComponent;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import net.dv8tion.jda.api.requests.restaction.interactions.ReplyCallbackAction;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
@@ -152,5 +156,40 @@ public class CommandService {
 //                .addActionRow(boxButtons)
                 .addActionRow(Button.secondary("Buy Slot", "Слот"))
                 .queue();
+    }
+
+    public void getExpeditionsPage(SlashCommandInteractionEvent event) {
+        JsonObject page;
+        try {
+            page = BotHttpClient.getExpeditionPage(event.getUser().getIdLong());
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        JsonArray expeditionsArray = page.getAsJsonArray("content");
+
+        if (expeditionsArray.size() == 0) {
+            event.replyEmbeds(emptyEmbed())
+                    .setEphemeral(true)
+                    .queue();
+            return;
+        }
+
+        Collection<JsonObject> expeditions = new ArrayList<>();
+
+        expeditionsArray.forEach(expedition -> expeditions.add(expedition.getAsJsonObject()));
+
+        User user = event.getUser();
+
+        MessageEmbed embed = embedFactory.getExpeditionsInfo(
+                expeditions,
+                user.getName(),
+                user.getAvatarUrl()
+        );
+
+        event.replyEmbeds(embed).queue();
+    }
+
+    private MessageEmbed emptyEmbed() {
+        return embedFactory.getEmbed(EmbedFactory.Type.EMPTY);
     }
 }
