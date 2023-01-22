@@ -1,17 +1,16 @@
 package com.aaronr92.korben_chan_bot.util;
 
-import com.aaronr92.korben_chan_bot.exception.AlreadyInExpeditionException;
-import com.aaronr92.korben_chan_bot.exception.ExpeditionNotFoundException;
-import com.aaronr92.korben_chan_bot.exception.TankNotFoundException;
-import com.aaronr92.korben_chan_bot.exception.UserNotFoundException;
+import com.aaronr92.korben_chan_bot.exception.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
 
 public class BotHttpClient {
     private static final HttpClient client = HttpClient.newHttpClient();
@@ -20,6 +19,7 @@ public class BotHttpClient {
     private static final String boxPath = "box/";
     private static final String userPath = "user/";
     private static final String expeditionPath = "expedition/";
+    private static final String tankPath = "tank/";
 
     /**
      * Sends a request to the server to open a box and get result of action
@@ -58,7 +58,8 @@ public class BotHttpClient {
             throws IOException, InterruptedException,
             UserNotFoundException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(serverPath + userPath + id))
+                .uri(URI.create((serverPath + userPath + id)
+                        .replace(" ", "%20")))
                 .GET()
                 .build();
 
@@ -85,7 +86,9 @@ public class BotHttpClient {
             throws IOException, InterruptedException,
             UserNotFoundException, AlreadyInExpeditionException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(serverPath + "expedition" + "?userId=" + userId + "&tankName=" + tankName))
+                .uri(URI.create((serverPath + "expedition" + "?userId=" +
+                        userId + "&tankName=" + tankName)
+                        .replace(" ", "%20")))
                 .POST(HttpRequest.BodyPublishers.noBody())
                 .build();
 
@@ -114,7 +117,8 @@ public class BotHttpClient {
     public static JsonObject getExpedition(long userId)
             throws IOException, InterruptedException, ExpeditionNotFoundException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(serverPath + expeditionPath + "user/" + userId))
+                .uri(URI.create((serverPath + expeditionPath + "user/" + userId)
+                        .replace(" ", "%20")))
                 .GET()
                 .build();
 
@@ -133,8 +137,9 @@ public class BotHttpClient {
             throws IOException, InterruptedException,
             AlreadyInExpeditionException, TankNotFoundException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(serverPath + userPath + userId +
-                        "?tankName=" + tankName + "&operation=SELL"))
+                .uri(URI.create((serverPath + userPath + userId +
+                        "?tankName=" + tankName + "&operation=SELL")
+                        .replace(" ", "%20")))
                 .PUT(HttpRequest.BodyPublishers.noBody())
                 .build();
 
@@ -148,5 +153,66 @@ public class BotHttpClient {
 
         if (response.statusCode() == 404)
             throw new TankNotFoundException();
+    }
+
+    public static JsonObject getTankById(long id) {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create((serverPath + tankPath + id)
+                        .replace(" ", "%20")))
+                .GET()
+                .build();
+
+        HttpResponse<String> response;
+        try {
+            response = client.send(
+                    request,
+                    HttpResponse.BodyHandlers.ofString()
+            );
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (response.statusCode() == 404)
+            throw new TankNotFoundException();
+
+        return new Gson().fromJson(response.body(), JsonObject.class);
+    }
+
+    public static void buyTank(long userId, String tankName)
+            throws NotEnoughMoneyException, TankAlreadyInUserHangarException,
+            IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create((serverPath + userPath + userId +
+                        "?tankName=" + tankName + "&operation=BUY")
+                        .replace(" ", "%20")))
+                .PUT(HttpRequest.BodyPublishers.noBody())
+                .build();
+
+        HttpResponse<String> response = client.send(
+                request,
+                HttpResponse.BodyHandlers.ofString()
+        );
+
+        if (response.statusCode() == 400)
+            throw new NotEnoughMoneyException();
+
+        if (response.statusCode() == 409)
+            throw new TankAlreadyInUserHangarException();
+    }
+
+    public static JsonObject getExpeditionPage(long userId)
+            throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create((serverPath + "expedition?" + "id=" + userId)
+                        .replace(" ", "%20")))
+                .GET()
+                .build();
+
+        HttpResponse<String> response = client.send(
+                request,
+                HttpResponse.BodyHandlers.ofString()
+        );
+
+        return new Gson().fromJson(response.body(), JsonObject.class);
     }
 }

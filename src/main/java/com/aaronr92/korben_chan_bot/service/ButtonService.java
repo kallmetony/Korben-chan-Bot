@@ -1,10 +1,11 @@
 package com.aaronr92.korben_chan_bot.service;
 
 import com.aaronr92.korben_chan_bot.exception.AlreadyInExpeditionException;
+import com.aaronr92.korben_chan_bot.exception.NotEnoughMoneyException;
+import com.aaronr92.korben_chan_bot.exception.TankAlreadyInUserHangarException;
 import com.aaronr92.korben_chan_bot.exception.TankNotFoundException;
 import com.aaronr92.korben_chan_bot.util.BotHttpClient;
 import com.aaronr92.korben_chan_bot.util.EmbedFactory;
-import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
@@ -65,5 +66,30 @@ public class ButtonService {
                         author.getAvatarUrl()
                 ))
                 .queue();
+    }
+
+    public void buy(ButtonInteractionEvent event, Button button) {
+        String[] buttonId = button.getId().split(" ");
+        switch (buttonId[1]) {
+            case "Tank" -> {
+                try {
+                    BotHttpClient.buyTank(event.getUser().getIdLong(), button.getLabel());
+                    event.replyEmbeds(embedFactory
+                                    .getEmbed(EmbedFactory.Type.SUCCESS))
+                            .setEphemeral(true)
+                            .queue();
+                } catch (NotEnoughMoneyException e) {
+                    event.replyEmbeds(embedFactory
+                                    .getEmbed(EmbedFactory.Type.NOT_ENOUGH_MONEY))
+                            .setEphemeral(true)
+                            .queue();
+                } catch (TankAlreadyInUserHangarException e) {
+                    event.replyEmbeds(embedFactory
+                                    .getEmbed(EmbedFactory.Type.TANK_ALREADY_IN_HANGAR))
+                            .setEphemeral(true)
+                            .queue();
+                } catch (IOException | InterruptedException ignored ) { }
+            }
+        }
     }
 }

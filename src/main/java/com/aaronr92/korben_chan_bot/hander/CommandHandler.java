@@ -28,10 +28,11 @@ public class CommandHandler extends ListenerAdapter {
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         switch (event.getName()) {
             case "вылазка" -> commandService.expedition(event);
+            case "вылазки" -> commandService.getExpeditionsPage(event);
             case "помощь" -> commandService.help(event);
             case "ангар" -> commandService.getUserInfo(event);
             case "коробка" -> commandService.openBox(event);
-//            case "магазин" -> commandService.openShop(event);
+            case "магазин" -> commandService.openShop(event);
             case "сказать" -> event.reply(event.getOption("текст").getAsString()).queue();
             case "ship" -> commandService.ship(event);
             case "info" -> {

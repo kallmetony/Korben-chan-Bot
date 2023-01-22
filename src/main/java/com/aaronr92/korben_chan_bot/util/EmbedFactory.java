@@ -9,6 +9,9 @@ import net.dv8tion.jda.api.entities.User;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.Collection;
 
 public class EmbedFactory {
@@ -18,6 +21,8 @@ public class EmbedFactory {
     private final String EXPEDITION = "\uD83D\uDEA9 Вылазка \uD83D\uDEA9";
     private final String CLOCK = "⏰ Оставшееся время ⏰";
     private final String IN_EXPEDITION = "В вылазке";
+    private final String SHOP = "\uD83D\uDED2 Магазин \uD83D\uDED2";
+    private final DateTimeFormatter expeditionTimeFormatter = DateTimeFormatter.ofPattern("dd-MM HH:mm");
 
     public MessageEmbed getEmbed(Type type, @Nullable String... args) {
         EmbedBuilder builder = new EmbedBuilder();
@@ -124,7 +129,24 @@ public class EmbedFactory {
             case SUCCESS -> {
                 builder.setTitle("✅ Операция успешно выполнена ✅");
                 builder.setColor(Color.GREEN);
-                builder.setAuthor(args[0], null, args[1]);
+                if (args.length == 2)
+                    builder.setAuthor(args[0], null, args[1]);
+            }
+            case NOT_ENOUGH_MONEY -> {
+                builder.setTitle("❌ Недостаточно средств ❌");
+                builder.setColor(Color.RED);
+                if (args.length == 2)
+                    builder.setAuthor(args[0], null, args[1]);
+            }
+            case TANK_ALREADY_IN_HANGAR -> {
+                builder.setTitle("❌ Танк уже в твоем ангаре ❌");
+                builder.setColor(Color.PINK);
+                if (args.length == 2)
+                    builder.setAuthor(args[0], null, args[1]);
+            }
+            case EMPTY -> {
+                builder.setTitle("Пусто");
+                builder.setColor(Color.RED);
             }
         }
         return builder.build();
@@ -173,6 +195,69 @@ public class EmbedFactory {
         return builder.build();
     }
 
+    public MessageEmbed getShop(
+            Collection<JsonObject> tanks,
+            @Nullable Collection<JsonObject> boxes
+    ) {
+        EmbedBuilder builder = new EmbedBuilder();
+        builder.setTitle(SHOP);
+//        for (JsonObject box :
+//                boxes) {
+//            // TODO: Add fields for each box
+//        }
+        builder.addBlankField(false);
+        for (JsonObject tank :
+                tanks) {
+            builder.addField(
+                    tank.get("name").getAsString(),
+                    '*' + tank.get("description").getAsString() + "*\n" +
+                    "**Цена: " + tank.get("price").getAsString() + " **\uD83E\uDE99",
+                    true
+            );
+            // TODO: Add fields for each Tank
+        }
+        builder.addBlankField(false);
+        builder.addField(
+                "Слот в ангаре",
+                "**Цена: " + 1000 + " **\uD83E\uDE99",
+                false);
+        builder.setColor(Color.pink);
+        return builder.build();
+    }
+
+    public MessageEmbed getExpeditionsInfo(
+            Collection<JsonObject> expeditions,
+            String username,
+            String avatarUrl
+    ) {
+        EmbedBuilder builder = new EmbedBuilder();
+        builder.setTitle("\uD83D\uDEA9 Вылазки \uD83D\uDEA9");
+        builder.setDescription("Информация о твоих последних 5 вылазках");
+
+        for (JsonObject expedition :
+                expeditions) {
+            String startDate = expeditionTimeFormatter.format(LocalDateTime
+                    .parse(expedition.get("startTime").getAsString()));
+            String period = PeriodParser.parse(
+                    expedition.get("period").getAsString()
+            );
+            String tankName = expedition.get("tank").getAsJsonObject()
+                    .get("name").getAsString();
+            String reward = '`' + expedition.get("reward").getAsString() + "` \uD83E\uDE99";
+            builder.addField(
+                    "Дата : " + startDate,
+                    "Танк: " + tankName + "\n" +
+                    "Период: " + period + "\n" +
+                    "Награда: " + reward,
+                    false
+            );
+        }
+        
+        builder.setColor(Color.PINK);
+        builder.setAuthor(username, null, avatarUrl);
+        return builder.build();
+    }
+
     public enum Type {
         MONEY,
         TANK,
@@ -183,8 +268,11 @@ public class EmbedFactory {
         ALREADY_IN_EXPEDITION,
         EXPEDITION_CREATION,
         NOT_ENOUGH_TANKS,
+        NOT_ENOUGH_MONEY,
         SELL_TANK,
         TANK_NOT_FOUND,
+        EMPTY,
+        TANK_ALREADY_IN_HANGAR,
         SUCCESS,
         HELP
     }

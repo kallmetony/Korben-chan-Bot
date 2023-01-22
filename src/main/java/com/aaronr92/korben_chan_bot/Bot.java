@@ -44,6 +44,7 @@ public class Bot {
                 Commands.slash("сказать", "Говорит что-то")
                         .addOptions(new OptionData(OptionType.STRING, "текст",
                                 "Текст для того, чтобы сказать", true)),
+                Commands.slash("магазин", "Открыть магазин"),
                 Commands.slash("коробка", "Открыть ежедневную коробку!"),
                 Commands.slash("ангар", "Информация о том, что у тебя есть"),
                 Commands.slash("ship", "Совместимость между двумя пользователями")
@@ -52,6 +53,7 @@ public class Bot {
                         .addOptions(new OptionData(OptionType.USER, "пользователь_2",
                                 "Второй пользователь", true)),
                 Commands.slash("вылазка", "Начать вылазку или посмотреть её статус"),
+                Commands.slash("вылазки", "Твои последние вылазки"),
                 Commands.slash("помощь", "Узнай что может бот!"),
                 // Admin commands
                 Commands.slash("info", "Отправить сообщение в информационный канал")
