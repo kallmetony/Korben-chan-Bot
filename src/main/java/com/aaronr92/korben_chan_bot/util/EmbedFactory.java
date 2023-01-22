@@ -11,7 +11,6 @@ import org.jetbrains.annotations.Nullable;
 import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.Collection;
 
 public class EmbedFactory {
@@ -22,7 +21,7 @@ public class EmbedFactory {
     private final String CLOCK = "⏰ Оставшееся время ⏰";
     private final String IN_EXPEDITION = "В вылазке";
     private final String SHOP = "\uD83D\uDED2 Магазин \uD83D\uDED2";
-    private final DateTimeFormatter expeditionTimeFormatter = DateTimeFormatter.ofPattern("dd-MM HH:mm");
+    private final DateTimeFormatter expeditionTimeFormatter = DateTimeFormatter.ofPattern("dd.MM HH:mm");
 
     public MessageEmbed getEmbed(Type type, @Nullable String... args) {
         EmbedBuilder builder = new EmbedBuilder();
@@ -251,7 +250,7 @@ public class EmbedFactory {
                     "Танк: " + tankName + "\n" +
                     "Период: " + period + "\n" +
                     "Награда: " + reward,
-                    false
+                    true
             );
         }
         
