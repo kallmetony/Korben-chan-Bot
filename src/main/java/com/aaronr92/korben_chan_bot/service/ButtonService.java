@@ -100,6 +100,7 @@ public class ButtonService {
                         case 400 -> event.replyEmbeds(embedFactory
                                         .getEmbed(EmbedFactory.Type.NOT_ENOUGH_MONEY))
                                 .queue();
+                        default -> {}
                     }
                 } catch (IOException | InterruptedException e) {
                     throw new RuntimeException(e);

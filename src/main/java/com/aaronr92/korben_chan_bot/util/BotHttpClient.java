@@ -222,7 +222,7 @@ public class BotHttpClient {
                 .uri(URI.create((serverPath + userPath + userId +
                         "?operation=SLOT")
                         .replace(" ", "%20")))
-                .GET()
+                .PUT(HttpRequest.BodyPublishers.noBody())
                 .build();
 
         HttpResponse<String> response = client.send(

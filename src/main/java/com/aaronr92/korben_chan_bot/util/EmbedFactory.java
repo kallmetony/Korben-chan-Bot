@@ -250,7 +250,7 @@ public class EmbedFactory {
                     "Танк: " + tankName + "\n" +
                     "Период: " + period + "\n" +
                     "Награда: " + reward,
-                    true
+                    false
             );
         }
         
