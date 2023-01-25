@@ -215,4 +215,21 @@ public class BotHttpClient {
 
         return new Gson().fromJson(response.body(), JsonObject.class);
     }
+    
+    public static int buySlot(long userId)
+            throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create((serverPath + userPath + userId +
+                        "?operation=SLOT")
+                        .replace(" ", "%20")))
+                .GET()
+                .build();
+
+        HttpResponse<String> response = client.send(
+                request,
+                HttpResponse.BodyHandlers.ofString()
+        );
+
+        return response.statusCode();
+    }
 }

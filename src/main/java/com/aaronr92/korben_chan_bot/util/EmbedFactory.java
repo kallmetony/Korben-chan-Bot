@@ -220,7 +220,7 @@ public class EmbedFactory {
         builder.addBlankField(false);
         builder.addField(
                 "Слот в ангаре",
-                "**Цена: " + 1000 + " **\uD83E\uDE99",
+                "**Цена: " + 1250 + " **\uD83E\uDE99",
                 false);
         builder.setColor(Color.pink);
         return builder.build();

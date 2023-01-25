@@ -90,6 +90,21 @@ public class ButtonService {
                             .queue();
                 } catch (IOException | InterruptedException ignored ) { }
             }
+            case "Slot" -> {
+                try {
+                    int response = BotHttpClient.buySlot(event.getUser().getIdLong());
+                    switch (response) {
+                        case 200 -> event.replyEmbeds(embedFactory
+                                        .getEmbed(EmbedFactory.Type.SUCCESS))
+                                .queue();
+                        case 400 -> event.replyEmbeds(embedFactory
+                                        .getEmbed(EmbedFactory.Type.NOT_ENOUGH_MONEY))
+                                .queue();
+                    }
+                } catch (IOException | InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 }
